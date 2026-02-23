@@ -627,7 +627,7 @@ button { cursor: pointer; font-family: inherit; }
           <button class="card-tab active" onclick="switchTab(this,'rankings-core')">Core</button>
           <button class="card-tab" onclick="switchTab(this,'rankings-alacart')">A-La-Cart</button>
           <button class="card-tab" onclick="switchTab(this,'rankings-sprints')">Sprints</button>
-        <button class="add-drive-btn" title="Add offering from Drive" onclick="openAddModal('rankings')"><svg viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
+        <button class="add-drive-btn" title="Refresh from Drive" onclick=\"refreshCard('rankings', this)\"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8a5 5 0 1 1-1-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><polyline points="12,2 12,5.5 8.5,5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
         <div class="card-body">
           <div class="card-panel active" id="rankings-core">
             <button class="offering-tile" onclick="openOffering('rankings-core-10k')">
@@ -710,7 +710,7 @@ button { cursor: pointer; font-family: inherit; }
         <div class="card-tabs">
           <button class="card-tab active" onclick="switchTab(this,'gladiator-core')">Core</button>
           <button class="card-tab" onclick="switchTab(this,'gladiator-alacart')">A-La-Cart</button>
-        <button class="add-drive-btn" title="Add offering from Drive" onclick="openAddModal('gladiator')"><svg viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
+        <button class="add-drive-btn" title="Refresh from Drive" onclick=\"refreshCard('gladiator', this)\"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8a5 5 0 1 1-1-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><polyline points="12,2 12,5.5 8.5,5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
         <div class="card-body">
                     <div class="card-panel active" id="gladiator-core">
             <button class="offering-tile" onclick="openOffering('gladiator-core-3k')">
@@ -769,7 +769,7 @@ button { cursor: pointer; font-family: inherit; }
         <div class="card-tabs">
           <button class="card-tab active" onclick="switchTab(this,'pimcon-core')">Core</button>
           <button class="card-tab" onclick="switchTab(this,'pimcon-alacart')">A-La-Cart</button>
-        <button class="add-drive-btn" title="Add offering from Drive" onclick="openAddModal('pimcon')"><svg viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
+        <button class="add-drive-btn" title="Refresh from Drive" onclick=\"refreshCard('pimcon', this)\"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8a5 5 0 1 1-1-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><polyline points="12,2 12,5.5 8.5,5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
         <div class="card-body">
           <div class="card-panel active" id="pimcon-core">
             <div class="coming-soon"><div class="coming-soon-dot"></div><p>Core offerings coming soon</p></div>
@@ -793,7 +793,7 @@ button { cursor: pointer; font-family: inherit; }
         <div class="card-tabs">
           <button class="card-tab active" onclick="switchTab(this,'pimmedia-core')">Core</button>
           <button class="card-tab" onclick="switchTab(this,'pimmedia-alacart')">A-La-Cart</button>
-        <button class="add-drive-btn" title="Add offering from Drive" onclick="openAddModal('pimmedia')"><svg viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
+        <button class="add-drive-btn" title="Refresh from Drive" onclick=\"refreshCard('pimmedia', this)\"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8a5 5 0 1 1-1-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><polyline points="12,2 12,5.5 8.5,5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
         <div class="card-body">
           <div class="card-panel active" id="pimmedia-core">
             <div class="coming-soon"><div class="coming-soon-dot"></div><p>Core offerings coming soon</p></div>
@@ -815,7 +815,7 @@ button { cursor: pointer; font-family: inherit; }
         <div class="card-tabs">
           <button class="card-tab active" onclick="switchTab(this,'other-core')">Core</button>
           <button class="card-tab" onclick="switchTab(this,'other-alacart')">A-La-Cart</button>
-        <button class="add-drive-btn" title="Add offering from Drive" onclick="openAddModal('other')"><svg viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
+        <button class="add-drive-btn" title="Refresh from Drive" onclick=\"refreshCard('other', this)\"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8a5 5 0 1 1-1-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><polyline points="12,2 12,5.5 8.5,5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
         <div class="card-body">
           <div class="card-panel active" id="other-core">
             <div class="coming-soon"><div class="coming-soon-dot"></div><p>Core offerings coming soon</p></div>
@@ -1397,7 +1397,7 @@ let currentOfferingId = null;
     other:     ['other-core','other-alacart'],
   };
 
-  function openAddModal(entityKey) {
+  function _openAddModal(entityKey) {
     _addModalEntity = entityKey;
     document.getElementById('add-doc-url').value = '';
     document.getElementById('add-tile-name').value = '';
@@ -1409,7 +1409,7 @@ let currentOfferingId = null;
     setTimeout(() => document.getElementById('add-doc-url').focus(), 80);
   }
 
-  function closeAddModal() {
+  function _closeAddModal() {
     document.getElementById('add-modal').classList.remove('open');
     _addModalEntity = null;
   }
@@ -1419,7 +1419,7 @@ let currentOfferingId = null;
     return m ? m[1] : null;
   }
 
-  async function submitAddModal() {
+  async function _submitAddModal() {
     const url   = document.getElementById('add-doc-url').value.trim();
     const name  = document.getElementById('add-tile-name').value.trim();
     const tab   = document.getElementById('add-tab-select').value || 'core';
@@ -1552,6 +1552,52 @@ let currentOfferingId = null;
     }
   }
 
+  
+  async function refreshCard(entityKey, btnEl) {
+    // Spin the icon while working
+    btnEl.classList.add('loading');
+    const panelId = entityKey + '-' + (
+      [...document.querySelectorAll(`[id^="${entityKey}-"]`)]
+        .find(el => el.classList.contains('card-panel') && el.classList.contains('active'))?.id.replace(entityKey + '-','')
+      || 'core'
+    );
+    const panel = document.getElementById(panelId) ||
+                  document.getElementById(entityKey + '-core');
+    if (!panel) { btnEl.classList.remove('loading'); return; }
+
+    // Collect all offering IDs in this panel
+    const tiles = [...panel.querySelectorAll('.offering-tile[onclick]')];
+    const ids = tiles.map(t => {
+      const m = t.getAttribute('onclick').match(/openOffering\('([^']+)'\)/);
+      return m ? m[1] : null;
+    }).filter(Boolean);
+
+    if (!ids.length) {
+      btnEl.classList.remove('loading');
+      return;
+    }
+
+    let updated = 0;
+    await Promise.all(ids.map(async id => {
+      const o = offerings[id];
+      if (!o || !o.docId) return;
+      try {
+        const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://docs.google.com/document/d/' + o.docId + '/export?format=txt');
+        const resp = await fetch(proxyUrl);
+        if (!resp.ok) return;
+        const text = await resp.text();
+        offerings[id].html = renderDocText(text);
+        updated++;
+      } catch(_) {}
+    }));
+
+    btnEl.classList.remove('loading');
+
+    // Flash the button green briefly to confirm
+    btnEl.style.color = 'var(--lime)';
+    setTimeout(() => { btnEl.style.color = ''; }, 1200);
+  }
+
   async function refreshOffering() {
   const o = offerings[currentOfferingId];
   if (!o || !o.docId) { alert('No Drive doc linked to this offering.'); return; }
@@ -1630,7 +1676,7 @@ document.addEventListener('DOMContentLoaded', () => { loadCustomTiles(); });
 
 
 <!-- Add-from-Drive modal -->
-<div id="add-modal" onclick="if(event.target===this)closeAddModal()">
+<div id="add-modal-disabled" style="display:none!important" onclick="if(event.target===this)closeAddModal()">
   <div class="add-modal-box">
     <div class="add-modal-title">Add from Google Drive</div>
     <div class="add-modal-sub">Paste a Google Doc URL. The document must be set to "Anyone with the link" can view.</div>
