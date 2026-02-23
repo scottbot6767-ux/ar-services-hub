@@ -1553,50 +1553,117 @@ let currentOfferingId = null;
   }
 
   
+  
+  /* ─── Drive folder config (per card, stored in localStorage) ─── */
+  function getDriveFolders() {
+    return JSON.parse(localStorage.getItem('drive_folders') || '{}');
+  }
+  function setDriveFolder(entityKey, folderId) {
+    const f = getDriveFolders();
+    f[entityKey] = folderId;
+    localStorage.setItem('drive_folders', JSON.stringify(f));
+  }
+
+  function extractFolderId(url) {
+    // Handles both /drive/folders/{id} and ?id={id} formats
+    let m = url.match(/\/folders\/([a-zA-Z0-9_-]{10,})/);
+    if (m) return m[1];
+    m = url.match(/[?&]id=([a-zA-Z0-9_-]{10,})/);
+    return m ? m[1] : null;
+  }
+
+  async function syncFolderDocs(entityKey, folderId, defaultPanel) {
+    // Fetch embedded folder view (no API key needed for public folders)
+    const embedUrl = 'https://drive.google.com/embeddedfolderview?id=' + folderId + '#list';
+    const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(embedUrl);
+    const resp = await fetch(proxyUrl);
+    if (!resp.ok) throw new Error('Folder fetch failed: ' + resp.status);
+    const folderHtml = await resp.text();
+
+    // Extract Google Doc IDs from the folder listing HTML
+    const docMatches = [...folderHtml.matchAll(/\/document\/d\/([a-zA-Z0-9_-]{20,})/g)];
+    const uniqueIds = [...new Set(docMatches.map(m => m[1]))];
+    if (!uniqueIds.length) return 0;
+
+    const stored = JSON.parse(localStorage.getItem('custom_tiles') || '[]');
+    let added = 0;
+
+    for (const docId of uniqueIds) {
+      // Skip if already in built-in offerings or localStorage
+      const alreadyStored = stored.find(t => t.docId === docId);
+      const alreadyBuiltin = Object.values(offerings).find(o => o.docId === docId);
+      if (alreadyStored || alreadyBuiltin) {
+        // Still refresh the content if built-in
+        if (alreadyBuiltin) {
+          const id = Object.keys(offerings).find(k => offerings[k].docId === docId);
+          if (id) {
+            try {
+              const r = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://docs.google.com/document/d/' + docId + '/export?format=txt'));
+              if (r.ok) offerings[id].html = renderDocText(await r.text());
+            } catch(_) {}
+          }
+        }
+        continue;
+      }
+
+      // Fetch the doc content
+      try {
+        const docResp = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://docs.google.com/document/d/' + docId + '/export?format=txt'));
+        if (!docResp.ok) continue;
+        const text = await docResp.text();
+        const title = text.split('\n').map(l => l.trim()).find(l => l.length > 2) || 'Untitled Doc';
+
+        const panelId = defaultPanel || (entityKey + '-core');
+        const id = 'custom-' + entityKey + '-' + docId.slice(0, 10);
+
+        offerings[id] = {
+          entity: entityKey, entityKey,
+          category: panelId.split('-').slice(1).join(' '),
+          title, docId,
+          html: renderDocText(text),
+          custom: true,
+        };
+
+        injectCustomTile(id, panelId, title);
+        saveCustomTile(entityKey, { id, panelId, tileName: title, docId, category: offerings[id].category });
+        added++;
+      } catch(_) {}
+    }
+    return added;
+  }
+
   async function refreshCard(entityKey, btnEl) {
-    // Spin the icon while working
     btnEl.classList.add('loading');
-    const panelId = entityKey + '-' + (
-      [...document.querySelectorAll(`[id^="${entityKey}-"]`)]
-        .find(el => el.classList.contains('card-panel') && el.classList.contains('active'))?.id.replace(entityKey + '-','')
-      || 'core'
-    );
-    const panel = document.getElementById(panelId) ||
-                  document.getElementById(entityKey + '-core');
-    if (!panel) { btnEl.classList.remove('loading'); return; }
 
-    // Collect all offering IDs in this panel
-    const tiles = [...panel.querySelectorAll('.offering-tile[onclick]')];
-    const ids = tiles.map(t => {
-      const m = t.getAttribute('onclick').match(/openOffering\('([^']+)'\)/);
-      return m ? m[1] : null;
-    }).filter(Boolean);
+    const folders = getDriveFolders();
+    let folderId = folders[entityKey];
 
-    if (!ids.length) {
-      btnEl.classList.remove('loading');
-      return;
+    // If no folder linked yet, prompt once
+    if (!folderId) {
+      const input = prompt('Paste the Google Drive folder URL for ' + entityKey.charAt(0).toUpperCase() + entityKey.slice(1) + ':\n(This will be saved and used for all future refreshes)');
+      if (!input) { btnEl.classList.remove('loading'); return; }
+      folderId = extractFolderId(input) || input.trim();
+      if (!folderId) { alert('Could not read a folder ID from that URL.'); btnEl.classList.remove('loading'); return; }
+      setDriveFolder(entityKey, folderId);
     }
 
-    let updated = 0;
-    await Promise.all(ids.map(async id => {
-      const o = offerings[id];
-      if (!o || !o.docId) return;
-      try {
-        const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://docs.google.com/document/d/' + o.docId + '/export?format=txt');
-        const resp = await fetch(proxyUrl);
-        if (!resp.ok) return;
-        const text = await resp.text();
-        offerings[id].html = renderDocText(text);
-        updated++;
-      } catch(_) {}
-    }));
+    // Get the currently active panel for this card
+    const activePanelEl = [...document.querySelectorAll('[id^="' + entityKey + '-"].card-panel.active')][0];
+    const panelId = activePanelEl ? activePanelEl.id : (entityKey + '-core');
+
+    try {
+      const added = await syncFolderDocs(entityKey, folderId, panelId);
+      btnEl.style.color = 'var(--lime)';
+      setTimeout(() => { btnEl.style.color = ''; }, 1400);
+    } catch(e) {
+      console.error('refreshCard error:', e);
+      btnEl.style.color = '#f87171';
+      setTimeout(() => { btnEl.style.color = ''; }, 1400);
+    }
 
     btnEl.classList.remove('loading');
-
-    // Flash the button green briefly to confirm
-    btnEl.style.color = 'var(--lime)';
-    setTimeout(() => { btnEl.style.color = ''; }, 1200);
   }
+
 
   async function refreshOffering() {
   const o = offerings[currentOfferingId];
