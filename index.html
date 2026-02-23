@@ -496,6 +496,82 @@ button { cursor: pointer; font-family: inherit; }
   font-size: 0.68rem; color: rgba(252,250,236,0.38);
   font-family: var(--font-head); letter-spacing: 0.07em; white-space: nowrap;
 }
+
+/* ── Add-from-Drive button & modal ── */
+.card-tabs { position: relative; }
+.add-drive-btn {
+  margin-left: auto; background: none; border: none; cursor: pointer;
+  width: 22px; height: 22px; border-radius: 3px; display: flex;
+  align-items: center; justify-content: center;
+  color: rgba(252,250,236,0.35); transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+.add-drive-btn:hover { background: rgba(255,255,255,0.1); color: var(--cream); }
+.add-drive-btn svg { width: 13px; height: 13px; }
+
+#add-modal {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: rgba(20,54,77,0.72); align-items: center; justify-content: center;
+}
+#add-modal.open { display: flex; }
+.add-modal-box {
+  background: #1e3d52; border-radius: 6px; padding: 1.75rem 2rem;
+  width: min(440px, 92vw); box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+}
+.add-modal-title {
+  font-family: var(--font-head); font-size: 1rem; font-weight: 900;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream);
+  margin-bottom: 0.35rem;
+}
+.add-modal-sub {
+  font-size: 0.78rem; color: rgba(252,250,236,0.45); margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+.add-modal-label {
+  font-family: var(--font-head); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(252,250,236,0.5); margin-bottom: 0.4rem; display: block;
+}
+.add-modal-input {
+  width: 100%; box-sizing: border-box;
+  background: rgba(0,0,0,0.25); border: 1px solid rgba(252,250,236,0.15);
+  border-radius: 4px; padding: 0.65rem 0.75rem;
+  font-family: var(--font-body); font-size: 0.82rem; color: var(--cream);
+  outline: none; margin-bottom: 0.5rem;
+  transition: border-color 0.2s;
+}
+.add-modal-input:focus { border-color: var(--blue); }
+.add-modal-input::placeholder { color: rgba(252,250,236,0.25); }
+.add-modal-row { display: flex; gap: 0.75rem; margin-top: 1rem; }
+.add-modal-row select {
+  flex: 1; background: rgba(0,0,0,0.25); border: 1px solid rgba(252,250,236,0.15);
+  border-radius: 4px; padding: 0.55rem 0.65rem;
+  font-family: var(--font-body); font-size: 0.82rem; color: var(--cream);
+  outline: none;
+}
+.add-modal-btns { display: flex; gap: 0.6rem; margin-top: 1.25rem; }
+.add-modal-submit {
+  flex: 1; background: var(--blue); border: none; border-radius: 4px;
+  padding: 0.65rem; font-family: var(--font-head); font-size: 0.72rem;
+  font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #fff; cursor: pointer; transition: opacity 0.2s;
+}
+.add-modal-submit:hover { opacity: 0.85; }
+.add-modal-submit:disabled { opacity: 0.45; pointer-events: none; }
+.add-modal-cancel {
+  background: rgba(255,255,255,0.07); border: none; border-radius: 4px;
+  padding: 0.65rem 1rem; font-family: var(--font-head); font-size: 0.72rem;
+  font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(252,250,236,0.55); cursor: pointer; transition: background 0.2s;
+}
+.add-modal-cancel:hover { background: rgba(255,255,255,0.12); }
+.add-modal-error { font-size: 0.75rem; color: #f87171; margin-top: 0.5rem; display: none; }
+.custom-tile-del {
+  background: none; border: none; cursor: pointer; padding: 0 0.25rem;
+  color: rgba(20,54,77,0.3); font-size: 0.85rem; line-height: 1;
+  transition: color 0.15s; flex-shrink: 0;
+}
+.custom-tile-del:hover { color: #c0392b; }
 </style>
 </head>
 <body>
@@ -551,7 +627,7 @@ button { cursor: pointer; font-family: inherit; }
           <button class="card-tab active" onclick="switchTab(this,'rankings-core')">Core</button>
           <button class="card-tab" onclick="switchTab(this,'rankings-alacart')">A-La-Cart</button>
           <button class="card-tab" onclick="switchTab(this,'rankings-sprints')">Sprints</button>
-        </div>
+        <button class="add-drive-btn" title="Add offering from Drive" onclick="openAddModal('rankings')"><svg viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
         <div class="card-body">
           <div class="card-panel active" id="rankings-core">
             <button class="offering-tile" onclick="openOffering('rankings-core-10k')">
@@ -634,7 +710,7 @@ button { cursor: pointer; font-family: inherit; }
         <div class="card-tabs">
           <button class="card-tab active" onclick="switchTab(this,'gladiator-core')">Core</button>
           <button class="card-tab" onclick="switchTab(this,'gladiator-alacart')">A-La-Cart</button>
-        </div>
+        <button class="add-drive-btn" title="Add offering from Drive" onclick="openAddModal('gladiator')"><svg viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
         <div class="card-body">
                     <div class="card-panel active" id="gladiator-core">
             <button class="offering-tile" onclick="openOffering('gladiator-core-3k')">
@@ -693,7 +769,7 @@ button { cursor: pointer; font-family: inherit; }
         <div class="card-tabs">
           <button class="card-tab active" onclick="switchTab(this,'pimcon-core')">Core</button>
           <button class="card-tab" onclick="switchTab(this,'pimcon-alacart')">A-La-Cart</button>
-        </div>
+        <button class="add-drive-btn" title="Add offering from Drive" onclick="openAddModal('pimcon')"><svg viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
         <div class="card-body">
           <div class="card-panel active" id="pimcon-core">
             <div class="coming-soon"><div class="coming-soon-dot"></div><p>Core offerings coming soon</p></div>
@@ -717,7 +793,7 @@ button { cursor: pointer; font-family: inherit; }
         <div class="card-tabs">
           <button class="card-tab active" onclick="switchTab(this,'pimmedia-core')">Core</button>
           <button class="card-tab" onclick="switchTab(this,'pimmedia-alacart')">A-La-Cart</button>
-        </div>
+        <button class="add-drive-btn" title="Add offering from Drive" onclick="openAddModal('pimmedia')"><svg viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
         <div class="card-body">
           <div class="card-panel active" id="pimmedia-core">
             <div class="coming-soon"><div class="coming-soon-dot"></div><p>Core offerings coming soon</p></div>
@@ -739,7 +815,7 @@ button { cursor: pointer; font-family: inherit; }
         <div class="card-tabs">
           <button class="card-tab active" onclick="switchTab(this,'other-core')">Core</button>
           <button class="card-tab" onclick="switchTab(this,'other-alacart')">A-La-Cart</button>
-        </div>
+        <button class="add-drive-btn" title="Add offering from Drive" onclick="openAddModal('other')"><svg viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
         <div class="card-body">
           <div class="card-panel active" id="other-core">
             <div class="coming-soon"><div class="coming-soon-dot"></div><p>Core offerings coming soon</p></div>
@@ -1305,7 +1381,178 @@ let currentOfferingId = null;
   window.scrollTo(0, 0);
 }
 
-async function refreshOffering() {
+
+  /* ═══════════════════════════════════════════════
+     ADD-FROM-DRIVE SYSTEM
+     ═══════════════════════════════════════════════ */
+
+  let _addModalEntity = null;
+
+  // Panels that exist per entity (auto-creates tabs if needed)
+  const ENTITY_PANELS = {
+    rankings:  ['rankings-core','rankings-alacart','rankings-sprints'],
+    gladiator: ['gladiator-core','gladiator-alacart'],
+    pimcon:    ['pimcon-core','pimcon-alacart'],
+    pimmedia:  ['pimmedia-core','pimmedia-alacart'],
+    other:     ['other-core','other-alacart'],
+  };
+
+  function openAddModal(entityKey) {
+    _addModalEntity = entityKey;
+    document.getElementById('add-doc-url').value = '';
+    document.getElementById('add-tile-name').value = '';
+    document.getElementById('add-tab-select').value = '';
+    document.getElementById('add-modal-error').style.display = 'none';
+    document.getElementById('add-modal-submit').disabled = false;
+    document.getElementById('add-modal-submit').textContent = 'Add Offering';
+    document.getElementById('add-modal').classList.add('open');
+    setTimeout(() => document.getElementById('add-doc-url').focus(), 80);
+  }
+
+  function closeAddModal() {
+    document.getElementById('add-modal').classList.remove('open');
+    _addModalEntity = null;
+  }
+
+  function extractDocId(url) {
+    const m = url.match(/\/document\/d\/([a-zA-Z0-9_-]+)/);
+    return m ? m[1] : null;
+  }
+
+  async function submitAddModal() {
+    const url   = document.getElementById('add-doc-url').value.trim();
+    const name  = document.getElementById('add-tile-name').value.trim();
+    const tab   = document.getElementById('add-tab-select').value || 'core';
+    const errEl = document.getElementById('add-modal-error');
+    const btn   = document.getElementById('add-modal-submit');
+
+    errEl.style.display = 'none';
+    if (!url) { showAddError('Please enter a Google Doc URL.'); return; }
+
+    const docId = extractDocId(url);
+    if (!docId) { showAddError('Could not extract a document ID from that URL.'); return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Fetching…';
+
+    let text = '';
+    try {
+      const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://docs.google.com/document/d/' + docId + '/export?format=txt');
+      const resp = await fetch(proxyUrl);
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      text = await resp.text();
+    } catch(e) {
+      showAddError('Could not fetch the document. Make sure it\'s set to "Anyone with the link."');
+      btn.disabled = false; btn.textContent = 'Add Offering';
+      return;
+    }
+
+    // Auto-detect title from first non-empty line
+    const firstLine = text.split('\n').map(l => l.trim()).find(l => l.length > 2) || 'Untitled Offering';
+    const tileName = name || firstLine.replace(/^\W+/,'').slice(0, 60);
+
+    const id = `custom-${_addModalEntity}-${tab}-${docId.slice(0,8)}`;
+
+    // Create the offering entry
+    const offering = {
+      entity: _addModalEntity,
+      entityKey: _addModalEntity,
+      category: tab.charAt(0).toUpperCase() + tab.slice(1).replace('-',' '),
+      title: tileName,
+      docId: docId,
+      html: renderDocText(text),
+      custom: true,
+    };
+
+    // Add to live offerings map
+    offerings[id] = offering;
+
+    // Inject tile into correct panel
+    const panelId = `${_addModalEntity}-${tab}`;
+    injectCustomTile(id, panelId, tileName);
+
+    // Persist to localStorage
+    saveCustomTile(_addModalEntity, { id, panelId, tileName, docId, category: offering.category });
+
+    closeAddModal();
+  }
+
+  function showAddError(msg) {
+    const el = document.getElementById('add-modal-error');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function injectCustomTile(offeringId, panelId, tileName) {
+    let panel = document.getElementById(panelId);
+    if (!panel) return;
+
+    // Remove coming-soon placeholder if present
+    const cs = panel.querySelector('.coming-soon');
+    if (cs) cs.remove();
+
+    const btn = document.createElement('button');
+    btn.className = 'offering-tile';
+    btn.setAttribute('onclick', `openOffering('${offeringId}')`);
+    btn.innerHTML = `
+      <div class="tile-info">
+        <span class="tile-category">Custom</span>
+        <span class="tile-name">${tileName}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.4rem">
+        <button class="custom-tile-del" title="Remove" onclick="event.stopPropagation();removeCustomTile('${offeringId}','${panelId}',this.closest('.offering-tile'))">✕</button>
+        <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>`;
+    panel.appendChild(btn);
+  }
+
+  function removeCustomTile(offeringId, panelId, tileEl) {
+    if (!confirm('Remove this tile?')) return;
+    tileEl.remove();
+    delete offerings[offeringId];
+
+    // Remove from localStorage
+    const stored = JSON.parse(localStorage.getItem('custom_tiles') || '[]');
+    localStorage.setItem('custom_tiles', JSON.stringify(stored.filter(t => t.id !== offeringId)));
+
+    // Restore coming-soon if panel is now empty
+    const panel = document.getElementById(panelId);
+    if (panel && !panel.querySelector('.offering-tile')) {
+      panel.innerHTML = '<div class="coming-soon"><div class="coming-soon-dot"></div><p>No offerings yet — click + to add from Drive</p></div>';
+    }
+  }
+
+  function saveCustomTile(entityKey, tileData) {
+    const stored = JSON.parse(localStorage.getItem('custom_tiles') || '[]');
+    if (!stored.find(t => t.id === tileData.id)) {
+      stored.push(tileData);
+      localStorage.setItem('custom_tiles', JSON.stringify(stored));
+    }
+  }
+
+  async function loadCustomTiles() {
+    const stored = JSON.parse(localStorage.getItem('custom_tiles') || '[]');
+    for (const t of stored) {
+      if (offerings[t.id]) continue; // already built-in
+      try {
+        const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://docs.google.com/document/d/' + t.docId + '/export?format=txt');
+        const resp = await fetch(proxyUrl);
+        const text = resp.ok ? await resp.text() : '';
+        offerings[t.id] = {
+          entity: t.panelId.split('-')[0],
+          entityKey: t.panelId.split('-')[0],
+          category: t.category,
+          title: t.tileName,
+          docId: t.docId,
+          html: text ? renderDocText(text) : '<p style="color:rgba(20,54,77,0.4);font-size:0.85rem">Could not load content.</p>',
+          custom: true,
+        };
+      } catch(_) {}
+      injectCustomTile(t.id, t.panelId, t.tileName);
+    }
+  }
+
+  async function refreshOffering() {
   const o = offerings[currentOfferingId];
   if (!o || !o.docId) { alert('No Drive doc linked to this offering.'); return; }
   const btn = document.getElementById('refresh-btn');
@@ -1377,7 +1624,37 @@ function closeOffering() {
   hub.style.display = 'block';
   window.scrollTo(0, 0);
 }
+
+document.addEventListener('DOMContentLoaded', () => { loadCustomTiles(); });
 </script>
 
+
+<!-- Add-from-Drive modal -->
+<div id="add-modal" onclick="if(event.target===this)closeAddModal()">
+  <div class="add-modal-box">
+    <div class="add-modal-title">Add from Google Drive</div>
+    <div class="add-modal-sub">Paste a Google Doc URL. The document must be set to "Anyone with the link" can view.</div>
+    <label class="add-modal-label">Google Doc URL</label>
+    <input class="add-modal-input" id="add-doc-url" type="text" placeholder="https://docs.google.com/document/d/..." />
+    <label class="add-modal-label" style="margin-top:0.75rem">Tile name (optional — auto-detected from doc)</label>
+    <input class="add-modal-input" id="add-tile-name" type="text" placeholder="e.g. Conference Sponsorship" />
+    <div class="add-modal-row">
+      <div style="flex:1">
+        <label class="add-modal-label">Tab</label>
+        <select id="add-tab-select">
+          <option value="">— auto —</option>
+          <option value="core">Core</option>
+          <option value="alacart">A-La-Cart</option>
+          <option value="sprints">Sprints</option>
+        </select>
+      </div>
+    </div>
+    <div class="add-modal-error" id="add-modal-error"></div>
+    <div class="add-modal-btns">
+      <button class="add-modal-submit" id="add-modal-submit" onclick="submitAddModal()">Add Offering</button>
+      <button class="add-modal-cancel" onclick="closeAddModal()">Cancel</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
