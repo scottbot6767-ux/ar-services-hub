@@ -572,6 +572,31 @@ button { cursor: pointer; font-family: inherit; }
   transition: color 0.15s; flex-shrink: 0;
 }
 .custom-tile-del:hover { color: #c0392b; }
+
+/* ── Inline add-doc panel (shown on refresh for cards with no folder) ── */
+.add-doc-bar {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.6rem 0.75rem; border-top: 1px solid rgba(20,54,77,0.08);
+  background: var(--cream);
+}
+.add-doc-input {
+  flex: 1; background: rgba(20,54,77,0.06); border: 1px solid rgba(20,54,77,0.15);
+  border-radius: 3px; padding: 0.4rem 0.6rem;
+  font-family: var(--font-body); font-size: 0.78rem; color: var(--dark);
+  outline: none; transition: border-color 0.2s;
+}
+.add-doc-input:focus { border-color: var(--blue); }
+.add-doc-input::placeholder { color: rgba(20,54,77,0.3); font-size: 0.75rem; }
+.add-doc-go {
+  background: var(--navy); border: none; border-radius: 3px;
+  padding: 0.4rem 0.75rem; font-family: var(--font-head); font-size: 0.62rem;
+  font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--cream); cursor: pointer; white-space: nowrap;
+  transition: opacity 0.2s; flex-shrink: 0;
+}
+.add-doc-go:hover { opacity: 0.8; }
+.add-doc-go:disabled { opacity: 0.4; pointer-events: none; }
+.add-doc-bar.hidden { display: none; }
 </style>
 </head>
 <body>
@@ -695,7 +720,9 @@ button { cursor: pointer; font-family: inherit; }
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
           </div>
-        </div>
+        
+        <div class="add-doc-bar hidden" id="rankings-add-bar"><input class="add-doc-input" id="rankings-add-input" type="text" placeholder="Paste Google Doc URL to add offering…" onkeydown="if(event.key==='Enter')addDocFromBar('rankings')" /><button class="add-doc-go" id="rankings-add-go" onclick="addDocFromBar('rankings')">Add</button></div>
+      </div>
       </div>
 
       <!-- GLADIATOR -->
@@ -754,7 +781,9 @@ button { cursor: pointer; font-family: inherit; }
             </button>
           </div>
 
-        </div>
+        
+        <div class="add-doc-bar hidden" id="gladiator-add-bar"><input class="add-doc-input" id="gladiator-add-input" type="text" placeholder="Paste Google Doc URL to add offering…" onkeydown="if(event.key==='Enter')addDocFromBar('gladiator')" /><button class="add-doc-go" id="gladiator-add-go" onclick="addDocFromBar('gladiator')">Add</button></div>
+      </div>
       </div>
 
       <!-- PIMCON -->
@@ -777,7 +806,9 @@ button { cursor: pointer; font-family: inherit; }
           <div class="card-panel" id="pimcon-alacart">
             <div class="coming-soon"><div class="coming-soon-dot"></div><p>A-la-cart offerings coming soon</p></div>
           </div>
-        </div>
+        
+        <div class="add-doc-bar hidden" id="pimcon-add-bar"><input class="add-doc-input" id="pimcon-add-input" type="text" placeholder="Paste Google Doc URL to add offering…" onkeydown="if(event.key==='Enter')addDocFromBar('pimcon')" /><button class="add-doc-go" id="pimcon-add-go" onclick="addDocFromBar('pimcon')">Add</button></div>
+      </div>
       </div>
 
       <!-- PIM MEDIA -->
@@ -801,7 +832,9 @@ button { cursor: pointer; font-family: inherit; }
           <div class="card-panel" id="pimmedia-alacart">
             <div class="coming-soon"><div class="coming-soon-dot"></div><p>A-la-cart offerings coming soon</p></div>
           </div>
-        </div>
+        
+        <div class="add-doc-bar hidden" id="pimmedia-add-bar"><input class="add-doc-input" id="pimmedia-add-input" type="text" placeholder="Paste Google Doc URL to add offering…" onkeydown="if(event.key==='Enter')addDocFromBar('pimmedia')" /><button class="add-doc-go" id="pimmedia-add-go" onclick="addDocFromBar('pimmedia')">Add</button></div>
+      </div>
       </div>
 
       <!-- OTHER -->
@@ -823,7 +856,9 @@ button { cursor: pointer; font-family: inherit; }
           <div class="card-panel" id="other-alacart">
             <div class="coming-soon"><div class="coming-soon-dot"></div><p>A-la-cart offerings coming soon</p></div>
           </div>
-        </div>
+        
+        <div class="add-doc-bar hidden" id="other-add-bar"><input class="add-doc-input" id="other-add-input" type="text" placeholder="Paste Google Doc URL to add offering…" onkeydown="if(event.key==='Enter')addDocFromBar('other')" /><button class="add-doc-go" id="other-add-go" onclick="addDocFromBar('other')">Add</button></div>
+      </div>
       </div>
 
     </div>
@@ -1554,114 +1589,94 @@ let currentOfferingId = null;
 
   
   
-  /* ─── Drive folder config (per card, stored in localStorage) ─── */
-  function getDriveFolders() {
-    return JSON.parse(localStorage.getItem('drive_folders') || '{}');
-  }
-  function setDriveFolder(entityKey, folderId) {
-    const f = getDriveFolders();
-    f[entityKey] = folderId;
-    localStorage.setItem('drive_folders', JSON.stringify(f));
-  }
+  
+  /* ─── Per-card add/refresh system ─── */
 
-  function extractFolderId(url) {
-    // Handles both /drive/folders/{id} and ?id={id} formats
-    let m = url.match(/\/folders\/([a-zA-Z0-9_-]{10,})/);
-    if (m) return m[1];
-    m = url.match(/[?&]id=([a-zA-Z0-9_-]{10,})/);
+  function extractDocId(url) {
+    const m = url.match(/\/document\/d\/([a-zA-Z0-9_-]{20,})/);
     return m ? m[1] : null;
-  }
-
-  async function syncFolderDocs(entityKey, folderId, defaultPanel) {
-    // Fetch embedded folder view (no API key needed for public folders)
-    const embedUrl = 'https://drive.google.com/embeddedfolderview?id=' + folderId + '#list';
-    const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(embedUrl);
-    const resp = await fetch(proxyUrl);
-    if (!resp.ok) throw new Error('Folder fetch failed: ' + resp.status);
-    const folderHtml = await resp.text();
-
-    // Extract Google Doc IDs from the folder listing HTML
-    const docMatches = [...folderHtml.matchAll(/\/document\/d\/([a-zA-Z0-9_-]{20,})/g)];
-    const uniqueIds = [...new Set(docMatches.map(m => m[1]))];
-    if (!uniqueIds.length) return 0;
-
-    const stored = JSON.parse(localStorage.getItem('custom_tiles') || '[]');
-    let added = 0;
-
-    for (const docId of uniqueIds) {
-      // Skip if already in built-in offerings or localStorage
-      const alreadyStored = stored.find(t => t.docId === docId);
-      const alreadyBuiltin = Object.values(offerings).find(o => o.docId === docId);
-      if (alreadyStored || alreadyBuiltin) {
-        // Still refresh the content if built-in
-        if (alreadyBuiltin) {
-          const id = Object.keys(offerings).find(k => offerings[k].docId === docId);
-          if (id) {
-            try {
-              const r = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://docs.google.com/document/d/' + docId + '/export?format=txt'));
-              if (r.ok) offerings[id].html = renderDocText(await r.text());
-            } catch(_) {}
-          }
-        }
-        continue;
-      }
-
-      // Fetch the doc content
-      try {
-        const docResp = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://docs.google.com/document/d/' + docId + '/export?format=txt'));
-        if (!docResp.ok) continue;
-        const text = await docResp.text();
-        const title = text.split('\n').map(l => l.trim()).find(l => l.length > 2) || 'Untitled Doc';
-
-        const panelId = defaultPanel || (entityKey + '-core');
-        const id = 'custom-' + entityKey + '-' + docId.slice(0, 10);
-
-        offerings[id] = {
-          entity: entityKey, entityKey,
-          category: panelId.split('-').slice(1).join(' '),
-          title, docId,
-          html: renderDocText(text),
-          custom: true,
-        };
-
-        injectCustomTile(id, panelId, title);
-        saveCustomTile(entityKey, { id, panelId, tileName: title, docId, category: offerings[id].category });
-        added++;
-      } catch(_) {}
-    }
-    return added;
   }
 
   async function refreshCard(entityKey, btnEl) {
     btnEl.classList.add('loading');
 
-    const folders = getDriveFolders();
-    let folderId = folders[entityKey];
-
-    // If no folder linked yet, prompt once
-    if (!folderId) {
-      const input = prompt('Paste the Google Drive folder URL for ' + entityKey.charAt(0).toUpperCase() + entityKey.slice(1) + ':\n(This will be saved and used for all future refreshes)');
-      if (!input) { btnEl.classList.remove('loading'); return; }
-      folderId = extractFolderId(input) || input.trim();
-      if (!folderId) { alert('Could not read a folder ID from that URL.'); btnEl.classList.remove('loading'); return; }
-      setDriveFolder(entityKey, folderId);
+    // Toggle inline add bar
+    const bar = document.getElementById(entityKey + '-add-bar');
+    if (bar) {
+      bar.classList.toggle('hidden');
+      if (!bar.classList.contains('hidden')) {
+        const input = document.getElementById(entityKey + '-add-input');
+        if (input) setTimeout(() => input.focus(), 60);
+      }
     }
 
-    // Get the currently active panel for this card
+    // Re-fetch all existing custom tiles for this card from Drive
+    const stored = JSON.parse(localStorage.getItem('custom_tiles') || '[]');
+    const mine = stored.filter(t => t.id.startsWith('custom-' + entityKey));
+    let updated = 0;
+
+    await Promise.all(mine.map(async t => {
+      if (!t.docId || !offerings[t.id]) return;
+      try {
+        const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://docs.google.com/document/d/' + t.docId + '/export?format=txt');
+        const resp = await fetch(proxyUrl);
+        if (!resp.ok) return;
+        offerings[t.id].html = renderDocText(await resp.text());
+        updated++;
+      } catch(_) {}
+    }));
+
+    btnEl.classList.remove('loading');
+    if (updated > 0) {
+      btnEl.style.color = 'var(--lime)';
+      setTimeout(() => { btnEl.style.color = ''; }, 1200);
+    }
+  }
+
+  async function addDocFromBar(entityKey) {
+    const input  = document.getElementById(entityKey + '-add-input');
+    const goBtn  = document.getElementById(entityKey + '-add-go');
+    const url    = input ? input.value.trim() : '';
+    if (!url) return;
+
+    const docId = extractDocId(url);
+    if (!docId) { input.style.borderColor = '#f87171'; setTimeout(() => { input.style.borderColor = ''; }, 1500); return; }
+
+    if (goBtn) { goBtn.disabled = true; goBtn.textContent = '…'; }
+
+    // Determine active panel
     const activePanelEl = [...document.querySelectorAll('[id^="' + entityKey + '-"].card-panel.active')][0];
     const panelId = activePanelEl ? activePanelEl.id : (entityKey + '-core');
 
     try {
-      const added = await syncFolderDocs(entityKey, folderId, panelId);
-      btnEl.style.color = 'var(--lime)';
-      setTimeout(() => { btnEl.style.color = ''; }, 1400);
+      const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://docs.google.com/document/d/' + docId + '/export?format=txt');
+      const resp = await fetch(proxyUrl);
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const text = await resp.text();
+      const title = text.split('\n').map(l => l.trim()).find(l => l.length > 2) || 'Untitled';
+      const id = 'custom-' + entityKey + '-' + docId.slice(0, 12);
+
+      offerings[id] = {
+        entity: entityKey, entityKey,
+        category: panelId.replace(entityKey + '-', '').replace('-', ' '),
+        title, docId,
+        html: renderDocText(text),
+        custom: true,
+      };
+
+      injectCustomTile(id, panelId, title);
+      saveCustomTile(entityKey, { id, panelId, tileName: title, docId, category: offerings[id].category });
+
+      input.value = '';
+      // Close bar after successful add
+      const bar = document.getElementById(entityKey + '-add-bar');
+      if (bar) bar.classList.add('hidden');
     } catch(e) {
-      console.error('refreshCard error:', e);
-      btnEl.style.color = '#f87171';
-      setTimeout(() => { btnEl.style.color = ''; }, 1400);
+      input.style.borderColor = '#f87171';
+      setTimeout(() => { input.style.borderColor = ''; }, 1500);
     }
 
-    btnEl.classList.remove('loading');
+    if (goBtn) { goBtn.disabled = false; goBtn.textContent = 'Add'; }
   }
 
 
