@@ -426,6 +426,57 @@ button { cursor: pointer; font-family: inherit; }
   .header-meta { display: none; }
   .offering-hero { gap: 1rem; }
 }
+
+/* ==============================================
+   OFFERING DETAIL — SPEC & SPRINT STYLES
+   ============================================== */
+.spec-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+.spec-table tr { border-bottom: 1px solid rgba(20,54,77,0.06); }
+.spec-table tr:last-child { border-bottom: none; }
+.spec-table td { padding: 0.55rem 0; font-size: 0.82rem; vertical-align: middle; }
+.spec-table td:first-child { color: var(--dark); }
+.spec-table td:last-child { text-align: right; min-width: 110px; }
+.val-check { color: #5a7200; font-weight: 700; font-size: 0.8rem; }
+.val-text  { color: var(--navy); font-weight: 600; font-size: 0.78rem; }
+.val-none  { color: rgba(20,54,77,0.22); font-size: 0.9rem; }
+
+.investment-callout {
+  margin-top: 1.5rem; padding: 1rem 1.25rem;
+  background: var(--navy); border-radius: 3px;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+}
+.investment-callout .inv-label {
+  font-family: var(--font-head); font-size: 0.63rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: rgba(252,250,236,0.45);
+}
+.investment-callout .inv-amount {
+  font-family: var(--font-head); font-size: 1.5rem; font-weight: 900;
+  color: var(--yellow); letter-spacing: -0.01em;
+}
+
+.tier-label-banner {
+  background: rgba(20,54,77,0.07); border-left: 3px solid var(--blue);
+  padding: 0.5rem 0.75rem; border-radius: 0 3px 3px 0; margin-bottom: 1rem;
+}
+.tier-label-banner .tier-num {
+  font-family: var(--font-head); font-size: 0.58rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.1rem;
+}
+.tier-label-banner .tier-name {
+  font-family: var(--font-head); font-size: 1rem; font-weight: 900;
+  color: var(--navy); letter-spacing: 0.02em;
+}
+
+.sprint-hero {
+  background: rgba(20,54,77,0.06); border-radius: 3px;
+  padding: 1rem 1.25rem; margin-bottom: 1.5rem;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.sprint-price { font-family: var(--font-head); font-size: 1.3rem; font-weight: 900; color: var(--navy); }
+.sprint-timeline { font-size: 0.75rem; font-weight: 500; color: rgba(20,54,77,0.5); }
+.sprint-deliverables { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+.sprint-deliverables li { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.85rem; color: var(--dark); line-height: 1.4; }
+.sprint-bullet { flex-shrink: 0; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); margin-top: 0.5rem; }
 </style>
 </head>
 <body>
@@ -480,53 +531,72 @@ button { cursor: pointer; font-family: inherit; }
         <div class="card-tabs">
           <button class="card-tab active" onclick="switchTab(this,'rankings-core')">Core</button>
           <button class="card-tab" onclick="switchTab(this,'rankings-alacart')">A-La-Cart</button>
+          <button class="card-tab" onclick="switchTab(this,'rankings-sprints')">Sprints</button>
         </div>
         <div class="card-body">
           <div class="card-panel active" id="rankings-core">
-            <button class="offering-tile" onclick="openOffering('rankings-core-sde')">
-              <div class="tile-info"><span class="tile-category">Core Package</span><span class="tile-name">Search Dominance Engine</span></div>
+            <button class="offering-tile" onclick="openOffering('rankings-core-10k')">
+              <div class="tile-info"><span class="tile-category">Core</span><span class="tile-name">Authority — $10K</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('rankings-core-lia')">
-              <div class="tile-info"><span class="tile-category">Core Package</span><span class="tile-name">Local Impact Accelerator</span></div>
+            <button class="offering-tile" onclick="openOffering('rankings-core-15k')">
+              <div class="tile-info"><span class="tile-category">Core</span><span class="tile-name">Ascend — $15K</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('rankings-core-25k')">
+              <div class="tile-info"><span class="tile-category">Core</span><span class="tile-name">Prestige — $25K</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('rankings-core-40k')">
+              <div class="tile-info"><span class="tile-category">Core</span><span class="tile-name">Apex — $40K</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
           </div>
           <div class="card-panel" id="rankings-alacart">
-            <button class="offering-tile" onclick="openOffering('rankings-alacart-links')">
-              <div class="tile-info"><span class="tile-category">A-La-Cart</span><span class="tile-name">High DR Link Package</span></div>
-              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </button>
             <button class="offering-tile" onclick="openOffering('rankings-alacart-ppc')">
               <div class="tile-info"><span class="tile-category">A-La-Cart</span><span class="tile-name">PPC / Google Ads</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('rankings-alacart-facebook')">
-              <div class="tile-info"><span class="tile-category">A-La-Cart</span><span class="tile-name">Facebook Ads</span></div>
+            <button class="offering-tile" onclick="openOffering('rankings-alacart-aic')">
+              <div class="tile-info"><span class="tile-category">A-La-Cart</span><span class="tile-name">AI Citation Magnet</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('rankings-alacart-ott')">
-              <div class="tile-info"><span class="tile-category">A-La-Cart</span><span class="tile-name">OTT Ads</span></div>
-              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </button>
-            <button class="offering-tile" onclick="openOffering('rankings-alacart-legal-authority')">
-              <div class="tile-info"><span class="tile-category">A-La-Cart</span><span class="tile-name">Legal Authority</span></div>
-              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </button>
-            <button class="offering-tile" onclick="openOffering('rankings-alacart-social')">
-              <div class="tile-info"><span class="tile-category">A-La-Cart</span><span class="tile-name">Social Media Ignite</span></div>
-              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </button>
-            <button class="offering-tile" onclick="openOffering('rankings-alacart-web-design')">
-              <div class="tile-info"><span class="tile-category">A-La-Cart</span><span class="tile-name">Website Design</span></div>
+            <button class="offering-tile" onclick="openOffering('rankings-alacart-web')">
+              <div class="tile-info"><span class="tile-category">A-La-Cart</span><span class="tile-name">Ignite Website Design</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
             <button class="offering-tile" onclick="openOffering('rankings-alacart-media')">
-              <div class="tile-info"><span class="tile-category">A-La-Cart</span><span class="tile-name">On Site Media Capture</span></div>
+              <div class="tile-info"><span class="tile-category">A-La-Cart</span><span class="tile-name">On-Site Media Capture</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('rankings-alacart-hosting')">
-              <div class="tile-info"><span class="tile-category">A-La-Cart</span><span class="tile-name">Hosting</span></div>
+            <button class="offering-tile" onclick="openOffering('rankings-alacart-ott')">
+              <div class="tile-info"><span class="tile-category">A-La-Cart</span><span class="tile-name">OTT Advertising</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+          </div>
+          <div class="card-panel" id="rankings-sprints">
+            <button class="offering-tile" onclick="openOffering('rankings-sprints-paid-media')">
+              <div class="tile-info"><span class="tile-category">Sprints</span><span class="tile-name">90-Day Paid Media</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('rankings-sprints-website')">
+              <div class="tile-info"><span class="tile-category">Sprints</span><span class="tile-name">Brand &amp; Website Design</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('rankings-sprints-links')">
+              <div class="tile-info"><span class="tile-category">Sprints</span><span class="tile-name">High DR Link Package</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('rankings-sprints-intake')">
+              <div class="tile-info"><span class="tile-category">Sprints</span><span class="tile-name">Intake Optimization Sprint</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('rankings-sprints-social')">
+              <div class="tile-info"><span class="tile-category">Sprints</span><span class="tile-name">Legal Foundry Social</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('rankings-sprints-cwv')">
+              <div class="tile-info"><span class="tile-category">Sprints</span><span class="tile-name">Technical &amp; Core Web Vitals</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
           </div>
@@ -721,159 +791,368 @@ const LOGOS = {
   }
 };
 
+
 const check = `<span class="check-icon"><svg viewBox="0 0 10 8" fill="none"><polyline points="1,4 4,7 9,1" stroke="#14364d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`;
 
-const placeholder = (title, category) => `
-  <div class="offering-placeholder">
-    <p><strong>Note:</strong> This is placeholder content for <strong>${title}</strong>. The full ${category} offering details are being finalized and will be updated here shortly.</p>
-  </div>
+// ─── SHARED A-LA-CART CONTENT ────────────────────────────────
+const ALC_PPC = `
   <div class="sow-section">
-    <div class="sow-section-title">Deliverables Overview</div>
+    <div class="sow-section-title">Google Ads Management</div>
     <ul class="service-list">
-      <li>${check} Dedicated Account Strategist</li>
-      <li>${check} Onboarding &amp; Discovery Session</li>
-      <li>${check} Monthly Performance Reporting</li>
-      <li>${check} Quarterly Business Reviews</li>
+      <li>${check} Google Ads Setup &amp; Optimization</li>
+      <li>${check} Dedicated Google Ads Specialist</li>
+      <li>${check} PPC Campaign Management</li>
+      <li>${check} Keyword Research &amp; Selection</li>
+      <li>${check} Landing Page Creation</li>
+      <li>${check} Ongoing Keyword Analysis &amp; Revision</li>
+      <li>${check} Ad Campaign Copywriting Enhancements</li>
+      <li>${check} Comprehensive Bid Strategy &amp; Budget Management</li>
+      <li>${check} Reporting, Analytics &amp; Lead Tracking</li>
     </ul>
   </div>
   <div class="sow-section">
-    <div class="sow-section-title">Investment</div>
+    <div class="sow-section-title">Ad Spend Tiers</div>
     <table class="tier-table">
-      <thead><tr><th>Package</th><th>Investment</th></tr></thead>
-      <tbody><tr><td>${title}</td><td>Contact Us</td></tr></tbody>
+      <thead><tr><th>Monthly Ad Spend</th><th>Management Fee</th></tr></thead>
+      <tbody>
+        <tr><td>$5,000 – $15,000</td><td>$1,500 / mo</td></tr>
+        <tr><td>$15,001 – $50,000</td><td>$3,000 / mo</td></tr>
+        <tr><td>$50,001 – $100,000</td><td>$5,000 / mo</td></tr>
+        <tr><td>$100,001+</td><td>Custom <span class="tier-badge">Contact Us</span></td></tr>
+      </tbody>
     </table>
   </div>
 `;
 
+const ALC_AIC = `
+  <div class="sow-section">
+    <div class="sow-section-title">Executive Summary</div>
+    <p style="font-size:0.85rem;line-height:1.65;color:var(--dark);margin-bottom:1rem">
+      AI Citation Magnet creates proprietary data research that positions your firm as the definitive source cited by both traditional search engines and AI platforms. This strategic linkable asset generates <strong>7–10 high-authority backlinks</strong> and <strong>20–30 media citations</strong> through original research that journalists, publishers, and AI systems cannot ignore.
+    </p>
+    <p style="font-size:0.85rem;line-height:1.65;color:var(--dark)">
+      By developing data-driven insights specific to your practice areas and geographic markets, we create permanent digital assets that compound in value — earning links today while training AI models to reference your firm tomorrow.
+    </p>
+  </div>
+  <div class="sow-section">
+    <div class="sow-section-title">Deliverables</div>
+    <ul class="service-list">
+      <li>${check} Proprietary data research asset (practice-area specific)</li>
+      <li>${check} 7–10 high-authority backlink placements (DR 50+)</li>
+      <li>${check} 20–30 media citations via outreach campaign</li>
+      <li>${check} AI platform indexing &amp; citation targeting</li>
+      <li>${check} Geographic market research &amp; positioning</li>
+      <li>${check} Performance report &amp; attribution tracking</li>
+    </ul>
+  </div>
+`;
+
+const ALC_WEB = `
+  <div class="sow-section">
+    <div class="sow-section-title">Ignite Website Design — Deliverables</div>
+    <ul class="service-list">
+      <li>${check} WordPress Gutenberg Development</li>
+      <li>${check} Conversion-Optimization Design</li>
+      <li>${check} Responsive Mobile Design</li>
+      <li>${check} SEO Technical Foundation</li>
+      <li>${check} Core Web Vitals Optimization</li>
+      <li>${check} Silo Architecture</li>
+      <li>${check} Content Migration</li>
+      <li>${check} Landing Page Design</li>
+      <li>${check} Premium Plugin Integration</li>
+      <li>${check} Lead Capture Optimization</li>
+      <li>${check} 2 Rounds of Revisions</li>
+      <li>${check} Post-Launch Support (14 Days)</li>
+      <li>${check} Premium Hosting &amp; Security</li>
+    </ul>
+  </div>
+  <div class="investment-callout">
+    <span class="inv-label">Investment</span>
+    <span class="inv-amount">$18,000</span>
+  </div>
+`;
+
+const ALC_MEDIA = `
+  <div class="sow-section">
+    <div class="sow-section-title">Scope of Services</div>
+    <ul class="service-list">
+      <li>${check} Professional Photography — 50+ high-res images (attorneys, staff, office)</li>
+      <li>${check} B-Roll Footage — 10+ clips, 15–30 seconds each</li>
+      <li>${check} Client Testimonial Videos — 2–3 testimonials, 60–90 seconds each</li>
+      <li>${check} Web-optimized &amp; high-resolution format delivery</li>
+      <li>${check} Full usage rights for all marketing &amp; advertising</li>
+    </ul>
+  </div>
+  <div class="sow-section">
+    <div class="sow-section-title">Timeline</div>
+    <ul class="service-list">
+      <li>${check} Production scheduled within 30 days of contract execution</li>
+      <li>${check} Edited content delivered within 10 business days post-production</li>
+      <li>${check} One round of minor revisions included</li>
+    </ul>
+  </div>
+  <div class="investment-callout">
+    <span class="inv-label">Investment</span>
+    <span class="inv-amount">$7,500 <span style="font-size:0.85rem;font-weight:500;color:rgba(252,250,236,0.55)">one-time</span></span>
+  </div>
+`;
+
+const ALC_OTT = `
+  <div class="sow-section">
+    <div class="sow-section-title">Programmatic Advertising Services</div>
+    <ul class="service-list">
+      <li>${check} Over-the-Top (OTT) Advertising</li>
+      <li>${check} Connected TV (CTV) Advertising</li>
+      <li>${check} Geofencing Campaigns</li>
+      <li>${check} Streaming Audio Advertising</li>
+      <li>${check} Dedicated Programmatic Advertising Specialist</li>
+      <li>${check} Campaign Management &amp; Optimization</li>
+      <li>${check} Audience Research &amp; Targeting</li>
+      <li>${check} Creative Development Consultation</li>
+      <li>${check} Ongoing Performance Analysis &amp; Revision</li>
+      <li>${check} Comprehensive Budget Management</li>
+      <li>${check} Incrementality Testing</li>
+      <li>${check} Reporting, Analytics &amp; Lead Tracking</li>
+    </ul>
+  </div>
+`;
+
+// ─── TIER/SPRINT BUILDERS ─────────────────────────────────────
+function specRow(name, val) {
+  let td;
+  if (val === true)  td = `<td class="val-check">Included</td>`;
+  else if (val === false) td = `<td class="val-none">—</td>`;
+  else               td = `<td class="val-text">${val}</td>`;
+  return `<tr><td>${name}</td>${td}</tr>`;
+}
+
+function gladTierHTML(services, investment) {
+  return `
+    <div class="sow-section">
+      <div class="sow-section-title">Included Services</div>
+      <table class="spec-table">${services.map(s=>specRow(s[0],s[1])).join('')}</table>
+    </div>
+    <div class="investment-callout">
+      <span class="inv-label">Monthly Investment</span>
+      <span class="inv-amount">${investment}</span>
+    </div>`;
+}
+
+function rankTierHTML(tierNum, tierName, services, investment) {
+  return `
+    <div class="tier-label-banner">
+      <div class="tier-num">Tier ${tierNum}</div>
+      <div class="tier-name">${tierName}</div>
+    </div>
+    <div class="sow-section">
+      <div class="sow-section-title">Included Services</div>
+      <table class="spec-table">${services.map(s=>specRow(s[0],s[1])).join('')}</table>
+    </div>
+    <div class="investment-callout">
+      <span class="inv-label">Monthly Investment</span>
+      <span class="inv-amount">${investment}</span>
+    </div>`;
+}
+
+function sprintHTML(price, timeline, deliverables) {
+  const items = deliverables.map(d=>`<li><span class="sprint-bullet"></span>${d}</li>`).join('');
+  return `
+    <div class="sprint-hero">
+      <span class="sprint-price">${price}</span>
+      <span class="sprint-timeline">${timeline}</span>
+    </div>
+    <div class="sow-section">
+      <div class="sow-section-title">Deliverables</div>
+      <ul class="sprint-deliverables">${items}</ul>
+    </div>`;
+}
+
 const offerings = {
 
-  /* ── RANKINGS CORE ───────────────────────────────── */
-  'rankings-core-sde': {
-    entity: 'Rankings', entityKey: 'rankings', category: 'Core',
-    title: 'Search Dominance Engine',
-    html: placeholder('Search Dominance Engine', 'Core')
-  },
-  'rankings-core-lia': {
-    entity: 'Rankings', entityKey: 'rankings', category: 'Core',
-    title: 'Local Impact Accelerator',
-    html: placeholder('Local Impact Accelerator', 'Core')
-  },
-
-  /* ── RANKINGS A-LA-CART ──────────────────────────── */
-  'rankings-alacart-links': {
-    entity: 'Rankings', entityKey: 'rankings', category: 'A-La-Cart',
-    title: 'High DR Link Package',
-    html: placeholder('High DR Link Package', 'A-La-Cart')
-  },
-  'rankings-alacart-ppc': {
-    entity: 'Rankings', entityKey: 'rankings', category: 'A-La-Cart',
-    title: 'PPC / Google Ads',
-    html: placeholder('PPC / Google Ads', 'A-La-Cart')
-  },
-  'rankings-alacart-facebook': {
-    entity: 'Rankings', entityKey: 'rankings', category: 'A-La-Cart',
-    title: 'Facebook Ads',
-    html: placeholder('Facebook Ads', 'A-La-Cart')
-  },
-  'rankings-alacart-ott': {
-    entity: 'Rankings', entityKey: 'rankings', category: 'A-La-Cart',
-    title: 'OTT Ads',
-    html: placeholder('OTT Ads', 'A-La-Cart')
-  },
-  'rankings-alacart-legal-authority': {
-    entity: 'Rankings', entityKey: 'rankings', category: 'A-La-Cart',
-    title: 'Legal Authority',
-    html: placeholder('Legal Authority', 'A-La-Cart')
-  },
-  'rankings-alacart-social': {
-    entity: 'Rankings', entityKey: 'rankings', category: 'A-La-Cart',
-    title: 'Social Media Ignite',
-    html: placeholder('Social Media Ignite', 'A-La-Cart')
-  },
-  'rankings-alacart-web-design': {
-    entity: 'Rankings', entityKey: 'rankings', category: 'A-La-Cart',
-    title: 'Website Design',
-    html: placeholder('Website Design', 'A-La-Cart')
-  },
-  'rankings-alacart-media': {
-    entity: 'Rankings', entityKey: 'rankings', category: 'A-La-Cart',
-    title: 'On Site Media Capture',
-    html: placeholder('On Site Media Capture', 'A-La-Cart')
-  },
-  'rankings-alacart-hosting': {
-    entity: 'Rankings', entityKey: 'rankings', category: 'A-La-Cart',
-    title: 'Hosting',
-    html: placeholder('Hosting', 'A-La-Cart')
-  },
-
-  /* ── GLADIATOR ───────────────────────────────────── */
+  // ── GLADIATOR CORE ───────────────────────────────────────────
   'gladiator-core-3k': {
-    entity: 'Gladiator',
-    entityKey: 'gladiator',
-    category: 'Core',
-    title: '3K Offering',
-    html: `
-      <div class="offering-placeholder">
-        <p><strong>Note:</strong> This is test/placeholder content. The full 3K Offering document is being finalized and will be updated here shortly.</p>
-      </div>
-      <div class="sow-section">
-        <div class="sow-section-title">Package Overview</div>
-        <ul class="service-list">
-          <li>${check} Dedicated Account Manager</li>
-          <li>${check} Monthly Strategy Sessions</li>
-          <li>${check} Performance Reporting &amp; Analytics</li>
-          <li>${check} Content Strategy Development</li>
-          <li>${check} Quarterly Business Reviews</li>
-        </ul>
-      </div>
-      <div class="sow-section">
-        <div class="sow-section-title">Investment</div>
-        <table class="tier-table">
-          <thead><tr><th>Package</th><th>Monthly Investment</th></tr></thead>
-          <tbody>
-            <tr><td>3K Core Package</td><td>$3,000 / mo</td></tr>
-          </tbody>
-        </table>
-      </div>
-    `
+    entity: 'Gladiator', entityKey: 'gladiator', category: 'Core', title: '3K — Authority',
+    html: gladTierHTML([
+      ['SEO: Search Engine Optimization', true],
+      ['Content Marketing (English &amp; Spanish)', '3,000 words/mo'],
+      ['Local SEO + GBP Optimization &amp; Publishing', '1 GBP'],
+      ['Yelp Premium', true],
+      ['Link Building', true],
+      ['Local Services Ads (LSA)', true],
+    ], '$3,000 / month')
+  },
+  'gladiator-core-5k': {
+    entity: 'Gladiator', entityKey: 'gladiator', category: 'Core', title: '5K — Authority',
+    html: gladTierHTML([
+      ['SEO: Search Engine Optimization', true],
+      ['AIO: Search Optimization (ChatGPT + LLMs)', true],
+      ['Content Marketing (English &amp; Spanish)', '6,000 words/mo'],
+      ['Web Maintenance', true],
+      ['Local SEO + GBP Optimization &amp; Publishing', 'Up to 2 GBPs'],
+      ['Yelp Premium', true],
+      ['Link Building', true],
+      ['Local Services Ads (LSA)', true],
+    ], '$5,000 / month')
+  },
+  'gladiator-core-7k5': {
+    entity: 'Gladiator', entityKey: 'gladiator', category: 'Core', title: '7.5K — Authority',
+    html: gladTierHTML([
+      ['SEO: Search Engine Optimization', true],
+      ['AIO: Search Optimization (ChatGPT + LLMs)', true],
+      ['Content Marketing (English &amp; Spanish)', '9,000 words/mo'],
+      ['Web Maintenance', true],
+      ['Local SEO + GBP Optimization &amp; Publishing', 'Up to 3 GBPs'],
+      ['Yelp Premium', true],
+      ['Link Building', true],
+      ['Local Services Ads (LSA)', true],
+    ], '$7,500 / month')
+  },
+  'gladiator-core-10k': {
+    entity: 'Gladiator', entityKey: 'gladiator', category: 'Core', title: '10K — Authority',
+    html: gladTierHTML([
+      ['SEO: Search Engine Optimization', true],
+      ['AIO: Search Optimization (ChatGPT + LLMs)', true],
+      ['Content Marketing (English &amp; Spanish)', '12,000 words/mo'],
+      ['Web Maintenance', true],
+      ['Local SEO + GBP Optimization &amp; Publishing', 'Up to 5 GBPs'],
+      ['Yelp Premium', true],
+      ['Link Building', true],
+      ['Digital PR Link Acquisition', true],
+      ['Local Services Ads (LSA)', true],
+    ], '$10,000 / month')
   },
 
-  'gladiator-alacart-ppc': {
-    entity: 'Gladiator',
-    entityKey: 'gladiator',
-    category: 'A-La-Cart',
-    title: 'PPC / Google Ads',
-    html: `
-      <div class="sow-section">
-        <div class="sow-section-title">Statement of Work</div>
-        <ul class="service-list">
-          <li>${check} Google Ads Setup &amp; Optimization</li>
-          <li>${check} Dedicated Google Ads Specialist</li>
-          <li>${check} PPC Campaign Management</li>
-          <li>${check} Keyword Research &amp; Selection</li>
-          <li>${check} Landing Page Creation</li>
-          <li>${check} Ongoing Keyword Analysis &amp; Revision</li>
-          <li>${check} Ad Campaign Copywriting Enhancements</li>
-          <li>${check} Comprehensive Bid Strategy &amp; Budget Management</li>
-          <li>${check} Reporting, Analytics &amp; Lead Tracking</li>
-        </ul>
-      </div>
-      <div class="sow-section">
-        <div class="sow-section-title">Ad Spend Tiers</div>
-        <table class="tier-table">
-          <thead>
-            <tr><th>Monthly Ad Spend</th><th>Management Fee</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>$5,000 – $15,000</td><td>$1,500 / mo</td></tr>
-            <tr><td>$15,001 – $50,000</td><td>$3,000 / mo</td></tr>
-            <tr><td>$50,001 – $100,000</td><td>$5,000 / mo</td></tr>
-            <tr><td>$100,001+</td><td>Custom <span class="tier-badge">Contact Us</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-    `
-  }
+  // ── GLADIATOR A-LA-CART ──────────────────────────────────────
+  'gladiator-alacart-ppc':   { entity:'Gladiator', entityKey:'gladiator', category:'A-La-Cart', title:'PPC / Google Ads',       html: ALC_PPC   },
+  'gladiator-alacart-aic':   { entity:'Gladiator', entityKey:'gladiator', category:'A-La-Cart', title:'AI Citation Magnet',      html: ALC_AIC   },
+  'gladiator-alacart-web':   { entity:'Gladiator', entityKey:'gladiator', category:'A-La-Cart', title:'Ignite Website Design',   html: ALC_WEB   },
+  'gladiator-alacart-media': { entity:'Gladiator', entityKey:'gladiator', category:'A-La-Cart', title:'On-Site Media Capture',   html: ALC_MEDIA },
+  'gladiator-alacart-ott':   { entity:'Gladiator', entityKey:'gladiator', category:'A-La-Cart', title:'OTT Advertising',         html: ALC_OTT   },
+
+  // ── RANKINGS CORE ────────────────────────────────────────────
+  'rankings-core-10k': {
+    entity: 'Rankings', entityKey: 'rankings', category: 'Core', title: 'Authority — $10K',
+    html: rankTierHTML(1, 'Authority', [
+      ['SEO: Search Engine Optimization', true],
+      ['AIO: Search Optimization (ChatGPT + LLMs)', true],
+      ['Content Marketing (English &amp; Spanish)', '12,000 words/mo'],
+      ['Web Maintenance', true],
+      ['Local SEO + GBP Optimization &amp; Publishing', 'Up to 3 GBPs'],
+      ['Yelp Premium', true],
+      ['Link Building', 'Core'],
+      ['Digital PR Link Acquisition', false],
+      ['Local Services Ads (LSA)', true],
+    ], '$10,000 / month')
+  },
+  'rankings-core-15k': {
+    entity: 'Rankings', entityKey: 'rankings', category: 'Core', title: 'Ascend — $15K',
+    html: rankTierHTML(2, 'Ascend', [
+      ['SEO: Search Engine Optimization', true],
+      ['AIO: Search Optimization (ChatGPT + LLMs)', '+AI Authority Stack'],
+      ['Content Marketing (English &amp; Spanish)', '18,000 words/mo'],
+      ['Web Maintenance', true],
+      ['Local SEO + GBP Optimization &amp; Publishing', 'Up to 5 GBPs'],
+      ['Yelp Premium', true],
+      ['Link Building', 'Premium'],
+      ['Digital PR Link Acquisition', true],
+      ['Local Services Ads (LSA)', true],
+    ], '$15,000 / month')
+  },
+  'rankings-core-25k': {
+    entity: 'Rankings', entityKey: 'rankings', category: 'Core', title: 'Prestige — $25K',
+    html: rankTierHTML(3, 'Prestige', [
+      ['SEO: Search Engine Optimization', true],
+      ['AIO: Search Optimization (ChatGPT + LLMs)', '+AI Directory Optimizer + AI Authority Stack'],
+      ['Content Marketing (English &amp; Spanish)', '32,000 words/mo'],
+      ['Web Maintenance', true],
+      ['Local SEO + GBP Optimization &amp; Publishing', 'Up to 10 GBPs'],
+      ['Yelp Premium', true],
+      ['Link Building', 'Elite'],
+      ['Digital PR Link Acquisition', true],
+      ['Local Services Ads (LSA)', true],
+    ], '$25,000 / month')
+  },
+  'rankings-core-40k': {
+    entity: 'Rankings', entityKey: 'rankings', category: 'Core', title: 'Apex — $40K',
+    html: rankTierHTML(4, 'Apex', [
+      ['SEO: Search Engine Optimization', true],
+      ['AIO: Search Optimization (ChatGPT + LLMs)', '+AI Citation Magnet + AI Directory Optimizer + AI Authority Stack'],
+      ['Content Marketing (English &amp; Spanish)', '50,000 words/mo'],
+      ['Web Maintenance', true],
+      ['Local SEO + GBP Optimization &amp; Publishing', 'Up to 20 GBPs'],
+      ['Yelp Premium', true],
+      ['Link Building', 'Pinnacle'],
+      ['Digital PR Link Acquisition', true],
+      ['Local Services Ads (LSA)', true],
+    ], '$40,000 / month')
+  },
+
+  // ── RANKINGS A-LA-CART (same SOW content as Gladiator) ───────
+  'rankings-alacart-ppc':   { entity:'Rankings', entityKey:'rankings', category:'A-La-Cart', title:'PPC / Google Ads',       html: ALC_PPC   },
+  'rankings-alacart-aic':   { entity:'Rankings', entityKey:'rankings', category:'A-La-Cart', title:'AI Citation Magnet',      html: ALC_AIC   },
+  'rankings-alacart-web':   { entity:'Rankings', entityKey:'rankings', category:'A-La-Cart', title:'Ignite Website Design',   html: ALC_WEB   },
+  'rankings-alacart-media': { entity:'Rankings', entityKey:'rankings', category:'A-La-Cart', title:'On-Site Media Capture',   html: ALC_MEDIA },
+  'rankings-alacart-ott':   { entity:'Rankings', entityKey:'rankings', category:'A-La-Cart', title:'OTT Advertising',         html: ALC_OTT   },
+
+  // ── RANKINGS SPRINTS ─────────────────────────────────────────
+  'rankings-sprints-paid-media': {
+    entity:'Rankings', entityKey:'rankings', category:'Sprints', title:'90-Day Paid Media',
+    html: sprintHTML('$12,500', '90-Day Sprint', [
+      'Campaign build + restructure',
+      'Offer alignment',
+      'Landing page coordination',
+      'Aggressive optimization cadence',
+      'Weekly performance reporting',
+    ])
+  },
+  'rankings-sprints-website': {
+    entity:'Rankings', entityKey:'rankings', category:'Sprints', title:'Brand &amp; Website Design',
+    html: sprintHTML('$35,000 – $75,000', 'Project-Based', [
+      'PI-specific conversion architecture',
+      'Messaging strategy',
+      'UX optimization',
+      'Mobile-first execution',
+      'Intake pathway engineering',
+    ])
+  },
+  'rankings-sprints-links': {
+    entity:'Rankings', entityKey:'rankings', category:'Sprints', title:'High DR Link Package',
+    html: sprintHTML('$15,000', '60-Day Sprint', [
+      'Targeted DR 70+ placements',
+      'Authority-building link acquisition',
+      'Anchor strategy alignment',
+      'Competitive authority push',
+    ])
+  },
+  'rankings-sprints-intake': {
+    entity:'Rankings', entityKey:'rankings', category:'Sprints', title:'Intake Optimization Sprint',
+    html: sprintHTML('$10,000', '60-Day Sprint', [
+      'Intake script overhaul',
+      'Call scoring + QA process',
+      'Objection handling optimization',
+      'Chase/follow-up cadence structure',
+      'Conversion KPI dashboard',
+    ])
+  },
+  'rankings-sprints-social': {
+    entity:'Rankings', entityKey:'rankings', category:'Sprints', title:'Legal Foundry Social',
+    html: sprintHTML('$8,000', '60-Day Sprint', [
+      'Brand authority content system',
+      'Founder positioning strategy',
+      'Platform alignment',
+      'Editorial calendar',
+      'Distribution structure',
+    ])
+  },
+  'rankings-sprints-cwv': {
+    entity:'Rankings', entityKey:'rankings', category:'Sprints', title:'Technical &amp; Core Web Vitals',
+    html: sprintHTML('$12,000', '45–60 Day Sprint', [
+      'Site speed overhaul',
+      'Core Web Vitals correction',
+      'Schema expansion',
+      'Technical debt cleanup',
+    ])
+  },
 
 };
 
