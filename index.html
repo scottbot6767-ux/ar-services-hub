@@ -20,6 +20,7 @@
   --yellow:  #eedc82;
   --lime:    #c6e005;
   --navy-2:  #1e4a67;
+  --bg:      #f0ece0;
 
   --font-head: 'Barlow Condensed', sans-serif;
   --font-body: 'DM Sans', sans-serif;
@@ -40,7 +41,6 @@ button { cursor: pointer; font-family: inherit; }
 #pw-screen {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: var(--navy);
@@ -48,280 +48,163 @@ button { cursor: pointer; font-family: inherit; }
   position: relative;
   overflow: hidden;
 }
-
-/* Subtle grid texture */
 #pw-screen::before {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background-image:
     linear-gradient(rgba(238,220,130,0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(238,220,130,0.04) 1px, transparent 1px);
   background-size: 48px 48px;
   pointer-events: none;
 }
-
 .pw-card {
   background: var(--cream);
   border-radius: 4px;
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem);
-  width: 100%;
-  max-width: 420px;
-  position: relative;
-  z-index: 1;
+  padding: clamp(2.5rem,5vw,4rem) clamp(2rem,5vw,4rem);
+  width: 100%; max-width: 420px;
+  position: relative; z-index: 1;
 }
-
-/* Top accent bar */
 .pw-card::before {
   content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 4px;
-  background: var(--yellow);
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px; background: var(--yellow);
   border-radius: 4px 4px 0 0;
 }
-
 .pw-eyebrow {
   font-family: var(--font-head);
-  font-size: 0.7rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--blue);
-  margin-bottom: 0.75rem;
+  font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 0.75rem;
 }
-
 .pw-title {
   font-family: var(--font-head);
-  font-size: clamp(1.6rem, 5vw, 2.4rem);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  color: var(--navy);
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
+  font-size: clamp(1.6rem,5vw,2.4rem); font-weight: 900;
+  line-height: 1; letter-spacing: -0.01em;
+  color: var(--navy); text-transform: uppercase; margin-bottom: 0.5rem;
 }
-
 .pw-sub {
-  font-size: 0.8rem;
-  font-weight: 300;
-  color: rgba(20,54,77,0.55);
-  margin-bottom: 2rem;
-  line-height: 1.5;
+  font-size: 0.8rem; font-weight: 300;
+  color: rgba(20,54,77,0.55); margin-bottom: 2rem; line-height: 1.5;
 }
-
-.pw-divider {
-  height: 1px;
-  background: rgba(20,54,77,0.12);
-  margin-bottom: 2rem;
-}
-
+.pw-divider { height: 1px; background: rgba(20,54,77,0.12); margin-bottom: 2rem; }
 .pw-label {
   font-family: var(--font-head);
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(20,54,77,0.45);
-  display: block;
-  margin-bottom: 0.5rem;
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(20,54,77,0.45); display: block; margin-bottom: 0.5rem;
 }
-
-.pw-input-wrap {
-  position: relative;
+.pw-input {
+  width: 100%; padding: 0.85rem 1rem;
+  background: var(--white); border: 1px solid rgba(20,54,77,0.15);
+  border-radius: 3px; font-family: var(--font-head);
+  font-size: 1.4rem; font-weight: 700; letter-spacing: 0.3em;
+  color: var(--navy); outline: none; transition: border-color 0.2s;
   margin-bottom: 1.25rem;
 }
-
-.pw-input {
-  width: 100%;
-  padding: 0.85rem 1rem;
-  background: var(--white);
-  border: 1px solid rgba(20,54,77,0.15);
-  border-radius: 3px;
-  font-family: var(--font-head);
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-  color: var(--navy);
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.pw-input:focus {
-  border-color: var(--blue);
-}
-
-.pw-input.error {
-  border-color: #c0392b;
-  animation: shake 0.3s ease;
-}
-
+.pw-input:focus { border-color: var(--blue); }
+.pw-input.error { border-color: #c0392b; animation: shake 0.3s ease; }
 .pw-btn {
-  width: 100%;
-  padding: 0.85rem;
-  background: var(--navy);
-  color: var(--yellow);
-  border: none;
-  border-radius: 3px;
-  font-family: var(--font-head);
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  transition: background 0.2s;
+  width: 100%; padding: 0.85rem;
+  background: var(--navy); color: var(--yellow); border: none;
+  border-radius: 3px; font-family: var(--font-head);
+  font-size: 0.9rem; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; transition: background 0.2s;
 }
-
-.pw-btn:hover {
-  background: var(--navy-2);
-}
-
-.pw-error {
-  font-size: 0.75rem;
-  color: #c0392b;
-  margin-top: 0.5rem;
-  display: none;
-  font-weight: 500;
-}
-
+.pw-btn:hover { background: var(--navy-2); }
+.pw-error { font-size: 0.75rem; color: #c0392b; margin-top: 0.5rem; display: none; font-weight: 500; }
 .pw-error.show { display: block; }
-
 @keyframes shake {
   0%,100% { transform: translateX(0); }
-  25%      { transform: translateX(-6px); }
-  75%      { transform: translateX(6px); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
 }
 
 /* ==============================================
-   MAIN HUB (hidden until unlocked)
+   SHARED HEADER (hub + offering page share it)
    ============================================== */
-#hub { display: none; min-height: 100vh; background: #f0ece0; }
-
-/* Top accent strip */
-.hub-stripe {
-  height: 5px;
-  background: var(--yellow);
-}
-
-/* Header */
-.hub-header {
+.site-stripe { height: 5px; background: var(--yellow); }
+.site-header {
   background: var(--navy);
-  padding: clamp(1.25rem, 3vw, 2rem) clamp(1.5rem, 5vw, 4rem);
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
+  padding: clamp(1.25rem,3vw,2rem) clamp(1.5rem,5vw,4rem);
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem; flex-wrap: wrap;
 }
-
-.hub-title-block {}
-
-.hub-kicker {
+.site-header-left { display: flex; align-items: center; gap: 1.5rem; }
+.back-btn {
+  display: flex; align-items: center; gap: 0.4rem;
+  background: rgba(255,255,255,0.07); border: none;
+  border-radius: 3px; padding: 0.45rem 0.75rem;
+  font-family: var(--font-head); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(252,250,236,0.6); transition: background 0.2s, color 0.2s;
+}
+.back-btn:hover { background: rgba(255,255,255,0.12); color: var(--cream); }
+.back-btn svg { width: 10px; height: 10px; }
+.header-title-block {}
+.header-kicker {
+  font-family: var(--font-head); font-size: 0.65rem;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--yellow); opacity: 0.7; margin-bottom: 0.2rem;
+}
+.header-title {
   font-family: var(--font-head);
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--yellow);
-  opacity: 0.7;
-  margin-bottom: 0.2rem;
+  font-size: clamp(1.4rem,3.5vw,2.2rem); font-weight: 900;
+  letter-spacing: -0.01em; color: var(--cream);
+  text-transform: uppercase; line-height: 1;
+}
+.header-title span { color: var(--yellow); }
+.header-meta {
+  font-size: 0.72rem; font-weight: 300;
+  color: rgba(252,250,236,0.4); letter-spacing: 0.05em;
+  text-align: right; line-height: 1.6;
 }
 
-.hub-title {
-  font-family: var(--font-head);
-  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-  font-weight: 900;
-  letter-spacing: -0.01em;
-  color: var(--cream);
-  text-transform: uppercase;
-  line-height: 1;
-}
-
-.hub-title span { color: var(--yellow); }
-
-.hub-meta {
-  font-size: 0.72rem;
-  font-weight: 300;
-  color: rgba(252,250,236,0.4);
-  letter-spacing: 0.05em;
-  text-align: right;
-  line-height: 1.6;
-}
-
-.hub-meta a {
-  color: rgba(58,147,207,0.8);
-  text-decoration: none;
-}
-
-/* Grid */
-.hub-body {
-  padding: clamp(1.5rem, 4vw, 3rem) clamp(1.5rem, 5vw, 4rem);
-}
-
+/* ==============================================
+   HUB (main card grid)
+   ============================================== */
+#hub { display: none; min-height: 100vh; background: var(--bg); }
+#hub.visible { opacity: 1; }
+#hub { opacity: 0; transition: opacity 0.4s ease; }
+.hub-body { padding: clamp(1.5rem,4vw,3rem) clamp(1.5rem,5vw,4rem); }
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
 /* ==============================================
-   CARD
+   CARDS
    ============================================== */
 .card {
-  background: var(--cream);
-  border-radius: 4px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  background: var(--cream); border-radius: 4px; overflow: hidden;
+  display: flex; flex-direction: column;
   box-shadow: 0 2px 12px rgba(20,54,77,0.1);
+  opacity: 0; transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
+.card.in { opacity: 1; transform: translateY(0); }
 
-/* Card header — dark with logo */
 .card-head {
   background: var(--dark);
   padding: 1.75rem 1.5rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
   position: relative;
 }
-
-/* Accent dot in corner */
 .card-head::after {
-  content: '';
-  position: absolute;
-  top: 12px; right: 12px;
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--lime);
+  content: ''; position: absolute; top: 12px; right: 12px;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--lime);
 }
-
 .card-logo-wrap {
-  background: rgba(255,255,255,0.08);
-  border-radius: 3px;
-  padding: 0.75rem 1.25rem;
-  width: 100%;
-  max-width: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 60px;
+  background: rgba(255,255,255,0.08); border-radius: 3px;
+  padding: 0.75rem 1.25rem; width: 100%; max-width: 200px;
+  display: flex; align-items: center; justify-content: center; min-height: 60px;
 }
-
 .card-logo-wrap img {
-  max-height: 44px;
-  max-width: 160px;
-  width: auto;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
+  max-height: 44px; max-width: 160px; width: auto;
+  object-fit: contain; filter: brightness(0) invert(1);
 }
-
-/* Don't invert colored logos */
 .card-logo-wrap.preserve img { filter: none; }
-
 .card-name {
-  font-family: var(--font-head);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  font-family: var(--font-head); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
   color: rgba(252,250,236,0.45);
 }
 
@@ -331,252 +214,224 @@ button { cursor: pointer; font-family: inherit; }
   border-bottom: 1px solid rgba(20,54,77,0.12);
   background: var(--cream);
 }
-
 .card-tab {
-  flex: 1;
-  padding: 0.65rem 1rem;
-  background: none;
-  border: none;
-  border-bottom: 3px solid transparent;
-  font-family: var(--font-head);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(20,54,77,0.4);
-  transition: color 0.2s, border-color 0.2s;
-  text-align: center;
+  flex: 1; padding: 0.65rem 1rem;
+  background: none; border: none; border-bottom: 3px solid transparent;
+  font-family: var(--font-head); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(20,54,77,0.4); transition: color 0.2s, border-color 0.2s;
 }
-
 .card-tab:hover { color: var(--navy); }
+.card-tab.active { color: var(--navy); border-bottom-color: var(--yellow); }
 
-.card-tab.active {
-  color: var(--navy);
-  border-bottom-color: var(--yellow);
-}
-
-/* Card body */
-.card-body {
-  flex: 1;
-  padding: 1.25rem 1.5rem 1.5rem;
-}
-
+/* Card body (offering tile list) */
+.card-body { flex: 1; padding: 1rem 1.25rem 1.25rem; }
 .card-panel { display: none; }
 .card-panel.active { display: block; }
 
-/* Placeholder */
+/* Offering tile — the clickable link inside each tab */
+.offering-tile {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 0.85rem 1rem;
+  background: var(--white); border: 1px solid rgba(20,54,77,0.1);
+  border-radius: 3px; text-align: left;
+  transition: border-color 0.2s, background 0.2s;
+  margin-bottom: 0.5rem;
+  gap: 1rem;
+}
+.offering-tile:last-child { margin-bottom: 0; }
+.offering-tile:hover {
+  border-color: var(--blue);
+  background: rgba(58,147,207,0.04);
+}
+.offering-tile:hover .tile-arrow { opacity: 1; transform: translateX(2px); }
+.tile-info { display: flex; flex-direction: column; gap: 0.2rem; }
+.tile-category {
+  font-family: var(--font-head); font-size: 0.55rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(20,54,77,0.35);
+}
+.tile-name {
+  font-family: var(--font-head); font-size: 0.95rem; font-weight: 700;
+  letter-spacing: 0.03em; color: var(--navy);
+}
+.tile-arrow {
+  flex-shrink: 0; color: var(--blue); opacity: 0.4;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.tile-arrow svg { width: 14px; height: 14px; }
+
+/* Coming soon placeholder */
 .coming-soon {
-  padding: 2rem 0;
-  text-align: center;
+  padding: 1.75rem 0; text-align: center;
 }
-
 .coming-soon-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: rgba(20,54,77,0.15);
-  margin: 0 auto 1rem;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(20,54,77,0.15); margin: 0 auto 0.75rem;
 }
-
 .coming-soon p {
-  font-size: 0.78rem;
-  font-weight: 300;
-  color: rgba(20,54,77,0.4);
-  letter-spacing: 0.05em;
+  font-size: 0.75rem; font-weight: 300;
+  color: rgba(20,54,77,0.35); letter-spacing: 0.04em;
 }
 
 /* ==============================================
-   OFFERING CONTENT
+   OFFERING DETAIL PAGE
    ============================================== */
-.offering-label {
-  font-family: var(--font-head);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--blue);
-  margin-bottom: 1rem;
+#offering-page {
+  display: none; min-height: 100vh; background: var(--bg);
+  flex-direction: column;
+}
+#offering-page.visible { display: flex; }
+
+/* Breadcrumb bar below main header */
+.offering-breadcrumb {
+  background: rgba(20,54,77,0.06);
+  border-bottom: 1px solid rgba(20,54,77,0.1);
+  padding: 0.6rem clamp(1.5rem,5vw,4rem);
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.7rem; font-weight: 400; color: rgba(20,54,77,0.4);
+  font-family: var(--font-head); letter-spacing: 0.08em;
+}
+.breadcrumb-sep { opacity: 0.3; }
+.breadcrumb-entity { color: rgba(20,54,77,0.55); }
+.breadcrumb-cat { color: rgba(20,54,77,0.55); }
+.breadcrumb-active { color: var(--navy); font-weight: 700; }
+
+/* Hero band */
+.offering-hero {
+  background: var(--dark);
+  padding: clamp(1.5rem,4vw,2.5rem) clamp(1.5rem,5vw,4rem);
+  display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+}
+.offering-hero-logo {
+  background: rgba(255,255,255,0.08); border-radius: 3px;
+  padding: 0.6rem 1rem;
+  display: flex; align-items: center; justify-content: center;
+  min-width: 120px; max-width: 180px; min-height: 50px;
+}
+.offering-hero-logo img {
+  max-height: 38px; max-width: 140px; width: auto;
+  object-fit: contain; filter: brightness(0) invert(1);
+}
+.offering-hero-logo.preserve img { filter: none; }
+.offering-hero-text {}
+.offering-hero-kicker {
+  font-family: var(--font-head); font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--yellow); opacity: 0.7; margin-bottom: 0.3rem;
+}
+.offering-hero-title {
+  font-family: var(--font-head); font-size: clamp(1.8rem,4vw,3rem);
+  font-weight: 900; letter-spacing: -0.01em;
+  color: var(--cream); text-transform: uppercase; line-height: 1;
+}
+
+/* Content area */
+.offering-content {
+  flex: 1;
+  padding: clamp(2rem,5vw,3.5rem) clamp(1.5rem,5vw,4rem);
+  max-width: 860px;
+}
+
+/* SOW styles */
+.sow-section { margin-bottom: 2.5rem; }
+.sow-section:last-child { margin-bottom: 0; }
+.sow-section-title {
+  font-family: var(--font-head); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid rgba(58,147,207,0.2);
 }
 
-.offering-section { margin-bottom: 1.5rem; }
-
-.offering-section:last-child { margin-bottom: 0; }
-
-.offering-section-title {
-  font-family: var(--font-head);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(20,54,77,0.5);
-  margin-bottom: 0.75rem;
-}
-
-/* Services checklist */
-.service-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-
+.service-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
 .service-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  font-size: 0.82rem;
-  font-weight: 400;
-  color: var(--dark);
-  line-height: 1.4;
+  display: flex; align-items: flex-start; gap: 0.65rem;
+  font-size: 0.88rem; font-weight: 400; color: var(--dark); line-height: 1.45;
 }
-
 .check-icon {
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  margin-top: 1px;
-  background: var(--lime);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-shrink: 0; width: 17px; height: 17px; margin-top: 1px;
+  background: var(--lime); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
 }
+.check-icon svg { width: 9px; height: 9px; }
 
-.check-icon svg {
-  width: 9px;
-  height: 9px;
-}
-
-/* Pricing tiers */
-.tier-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 0.5rem;
-}
-
+/* Tier table */
+.tier-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
 .tier-table th {
-  font-family: var(--font-head);
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(20,54,77,0.4);
-  text-align: left;
+  font-family: var(--font-head); font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(20,54,77,0.4); text-align: left;
   padding: 0 0 0.5rem;
-  border-bottom: 1px solid rgba(20,54,77,0.1);
+  border-bottom: 1px solid rgba(20,54,77,0.12);
 }
-
 .tier-table th:last-child { text-align: right; }
-
 .tier-table td {
-  padding: 0.55rem 0;
-  font-size: 0.8rem;
-  font-weight: 400;
-  color: var(--dark);
+  padding: 0.65rem 0; font-size: 0.85rem; color: var(--dark);
   border-bottom: 1px solid rgba(20,54,77,0.06);
-  vertical-align: middle;
 }
-
 .tier-table td:last-child {
-  text-align: right;
-  font-weight: 600;
-  color: var(--navy);
-  font-family: var(--font-head);
-  font-size: 0.85rem;
-  letter-spacing: 0.03em;
+  text-align: right; font-weight: 600; color: var(--navy);
+  font-family: var(--font-head); font-size: 0.9rem; letter-spacing: 0.03em;
 }
-
 .tier-table tr:last-child td { border-bottom: none; }
-
 .tier-badge {
   display: inline-block;
-  background: rgba(198,224,5,0.15);
-  color: #5a7200;
-  font-family: var(--font-head);
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 2px 6px;
-  border-radius: 2px;
-  vertical-align: middle;
-  margin-left: 0.4rem;
+  background: rgba(198,224,5,0.15); color: #5a7200;
+  font-family: var(--font-head); font-size: 0.58rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 2px 6px; border-radius: 2px; vertical-align: middle; margin-left: 0.4rem;
 }
 
-/* Placeholder offering */
-.placeholder-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: rgba(238,220,130,0.2);
-  color: #7a6a1a;
-  font-family: var(--font-head);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.4rem 0.75rem;
-  border-radius: 2px;
-  border: 1px solid rgba(238,220,130,0.4);
+/* Test placeholder in offering page */
+.offering-placeholder {
+  background: rgba(238,220,130,0.12);
+  border: 1px solid rgba(238,220,130,0.3);
+  border-left: 3px solid var(--yellow);
+  border-radius: 3px; padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.offering-placeholder p {
+  font-size: 0.8rem; font-weight: 400;
+  color: rgba(20,54,77,0.6); line-height: 1.6;
+}
+.offering-placeholder strong {
+  font-weight: 600; color: var(--navy);
 }
 
 /* ==============================================
    FOOTER
    ============================================== */
-.hub-footer {
-  padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
+.site-footer {
+  padding: 1.25rem clamp(1.5rem,5vw,4rem);
   border-top: 1px solid rgba(20,54,77,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  background: var(--cream);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 0.5rem; background: var(--cream);
 }
-
-.hub-footer-left {
-  font-size: 0.72rem;
-  color: rgba(20,54,77,0.35);
-  font-weight: 300;
-  letter-spacing: 0.04em;
+.site-footer-left {
+  font-size: 0.72rem; color: rgba(20,54,77,0.35);
+  font-weight: 300; letter-spacing: 0.04em;
 }
-
-.hub-footer-right {
-  font-family: var(--font-head);
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+.site-footer-right {
+  font-family: var(--font-head); font-size: 0.65rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
   color: rgba(20,54,77,0.25);
 }
-
-/* ==============================================
-   TRANSITIONS
-   ============================================== */
-#hub { opacity: 0; transition: opacity 0.4s ease; }
-#hub.visible { opacity: 1; }
-
-.card {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.card.in { opacity: 1; transform: translateY(0); }
 
 /* ==============================================
    RESPONSIVE
    ============================================== */
 @media (max-width: 600px) {
   .cards-grid { grid-template-columns: 1fr; }
-  .hub-meta { display: none; }
+  .header-meta { display: none; }
+  .offering-hero { gap: 1rem; }
 }
 </style>
 </head>
 <body>
 
 <!-- ============================================================
-     PASSWORD SCREEN
+     1. PASSWORD SCREEN
      ============================================================ -->
 <div id="pw-screen">
   <div class="pw-card">
@@ -585,16 +440,7 @@ button { cursor: pointer; font-family: inherit; }
     <p class="pw-sub">Centralized service offerings for all entities under the Attorney Rankings umbrella.</p>
     <div class="pw-divider"></div>
     <label class="pw-label" for="pw-input">Access Code</label>
-    <div class="pw-input-wrap">
-      <input
-        type="password"
-        id="pw-input"
-        class="pw-input"
-        placeholder="——"
-        maxlength="8"
-        autocomplete="off"
-      />
-    </div>
+    <input type="password" id="pw-input" class="pw-input" placeholder="——" maxlength="8" autocomplete="off">
     <button class="pw-btn" onclick="checkPassword()">Enter Hub</button>
     <p class="pw-error" id="pw-error">Incorrect access code. Try again.</p>
   </div>
@@ -602,17 +448,18 @@ button { cursor: pointer; font-family: inherit; }
 
 
 <!-- ============================================================
-     MAIN HUB
+     2. MAIN HUB
      ============================================================ -->
 <div id="hub">
-  <div class="hub-stripe"></div>
-
-  <header class="hub-header">
-    <div class="hub-title-block">
-      <div class="hub-kicker">Attorney Rankings — Internal</div>
-      <h1 class="hub-title">Services <span>Hub</span></h1>
+  <div class="site-stripe"></div>
+  <header class="site-header">
+    <div class="site-header-left">
+      <div class="header-title-block">
+        <div class="header-kicker">Attorney Rankings — Internal</div>
+        <h1 class="header-title">Services <span>Hub</span></h1>
+      </div>
     </div>
-    <div class="hub-meta">
+    <div class="header-meta">
       5 entities &nbsp;·&nbsp; Services menu<br>
       Confidential — internal use only
     </div>
@@ -621,319 +468,373 @@ button { cursor: pointer; font-family: inherit; }
   <main class="hub-body">
     <div class="cards-grid">
 
-      <!-- ======================================================
-           CARD 1: RANKINGS
-           ====================================================== -->
+      <!-- RANKINGS -->
       <div class="card">
         <div class="card-head">
           <div class="card-logo-wrap">
-            <img src="https://rankings.io/wp-content/uploads/logo-11-20-25.png" alt="Rankings.io" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-family:var(--font-head);font-size:1.4rem;font-weight:900;letter-spacing:-0.02em;color:#fcfaec\'>Rankings.io</span>'">
+            <img src="https://rankings.io/wp-content/uploads/logo-11-20-25.png" alt="Rankings.io"
+              onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-family:var(--font-head);font-size:1.4rem;font-weight:900;color:#fcfaec\'>Rankings.io</span>'">
           </div>
           <div class="card-name">Rankings</div>
         </div>
         <div class="card-tabs">
-          <button class="card-tab active" onclick="switchTab(this, 'rankings-core')">Core</button>
-          <button class="card-tab" onclick="switchTab(this, 'rankings-alacart')">A-La-Cart</button>
+          <button class="card-tab active" onclick="switchTab(this,'rankings-core')">Core</button>
+          <button class="card-tab" onclick="switchTab(this,'rankings-alacart')">A-La-Cart</button>
         </div>
         <div class="card-body">
           <div class="card-panel active" id="rankings-core">
-            <div class="coming-soon">
-              <div class="coming-soon-dot"></div>
-              <p>Core offerings coming soon</p>
-            </div>
+            <div class="coming-soon"><div class="coming-soon-dot"></div><p>Core offerings coming soon</p></div>
           </div>
           <div class="card-panel" id="rankings-alacart">
-            <div class="coming-soon">
-              <div class="coming-soon-dot"></div>
-              <p>A-la-cart offerings coming soon</p>
-            </div>
+            <div class="coming-soon"><div class="coming-soon-dot"></div><p>A-la-cart offerings coming soon</p></div>
           </div>
         </div>
       </div>
 
-      <!-- ======================================================
-           CARD 2: GLADIATOR
-           ====================================================== -->
+      <!-- GLADIATOR -->
       <div class="card">
         <div class="card-head">
           <div class="card-logo-wrap">
-            <img src="https://cdn-ilapehp.nitrocdn.com/JzcuNEOunVkUEngShcLekRVajrmSTreT/assets/images/optimized/rev-5a5341b/gladiatorlawmarketing.com/wp-content/uploads/2024/06/gladiator-law-marketing_logo.png" alt="Gladiator Law Marketing" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-family:var(--font-head);font-size:1.1rem;font-weight:900;letter-spacing:-0.01em;color:#fcfaec;text-align:center\'>Gladiator Law Marketing</span>'">
+            <img src="https://cdn-ilapehp.nitrocdn.com/JzcuNEOunVkUEngShcLekRVajrmSTreT/assets/images/optimized/rev-5a5341b/gladiatorlawmarketing.com/wp-content/uploads/2024/06/gladiator-law-marketing_logo.png" alt="Gladiator Law Marketing"
+              onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-family:var(--font-head);font-size:1rem;font-weight:900;color:#fcfaec\'>Gladiator Law</span>'">
           </div>
           <div class="card-name">Gladiator</div>
         </div>
         <div class="card-tabs">
-          <button class="card-tab active" onclick="switchTab(this, 'gladiator-core')">Core</button>
-          <button class="card-tab" onclick="switchTab(this, 'gladiator-alacart')">A-La-Cart</button>
+          <button class="card-tab active" onclick="switchTab(this,'gladiator-core')">Core</button>
+          <button class="card-tab" onclick="switchTab(this,'gladiator-alacart')">A-La-Cart</button>
         </div>
         <div class="card-body">
-
-          <!-- CORE: 3K Offering -->
           <div class="card-panel active" id="gladiator-core">
-            <div class="offering-label">3K Offering</div>
-            <div class="coming-soon" style="padding:1.5rem 0">
-              <div class="coming-soon-dot"></div>
-              <p>Content being added — check back shortly</p>
-            </div>
+            <button class="offering-tile" onclick="openOffering('gladiator-core-3k')">
+              <div class="tile-info">
+                <span class="tile-category">Core Package</span>
+                <span class="tile-name">3K Offering</span>
+              </div>
+              <span class="tile-arrow">
+                <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
           </div>
-
-          <!-- A-LA-CART: PPC / Google Ads -->
           <div class="card-panel" id="gladiator-alacart">
-            <div class="offering-label">PPC / Google Ads</div>
-
-            <div class="offering-section">
-              <div class="offering-section-title">Google Ads Management</div>
-              <ul class="service-list">
-                <li>
-                  <span class="check-icon">
-                    <svg viewBox="0 0 10 8" fill="none"><polyline points="1,4 4,7 9,1" stroke="#14364d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                  Google Ads Setup &amp; Optimization
-                </li>
-                <li>
-                  <span class="check-icon">
-                    <svg viewBox="0 0 10 8" fill="none"><polyline points="1,4 4,7 9,1" stroke="#14364d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                  Dedicated Google Ads Specialist
-                </li>
-                <li>
-                  <span class="check-icon">
-                    <svg viewBox="0 0 10 8" fill="none"><polyline points="1,4 4,7 9,1" stroke="#14364d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                  PPC Campaign Management
-                </li>
-                <li>
-                  <span class="check-icon">
-                    <svg viewBox="0 0 10 8" fill="none"><polyline points="1,4 4,7 9,1" stroke="#14364d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                  Keyword Research &amp; Selection
-                </li>
-                <li>
-                  <span class="check-icon">
-                    <svg viewBox="0 0 10 8" fill="none"><polyline points="1,4 4,7 9,1" stroke="#14364d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                  Landing Page Creation
-                </li>
-                <li>
-                  <span class="check-icon">
-                    <svg viewBox="0 0 10 8" fill="none"><polyline points="1,4 4,7 9,1" stroke="#14364d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                  Ongoing Keyword Analysis &amp; Revision
-                </li>
-                <li>
-                  <span class="check-icon">
-                    <svg viewBox="0 0 10 8" fill="none"><polyline points="1,4 4,7 9,1" stroke="#14364d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                  Ad Campaign Copywriting Enhancements
-                </li>
-                <li>
-                  <span class="check-icon">
-                    <svg viewBox="0 0 10 8" fill="none"><polyline points="1,4 4,7 9,1" stroke="#14364d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                  Comprehensive Bid Strategy &amp; Budget Management
-                </li>
-                <li>
-                  <span class="check-icon">
-                    <svg viewBox="0 0 10 8" fill="none"><polyline points="1,4 4,7 9,1" stroke="#14364d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
-                  Reporting, Analytics &amp; Lead Tracking
-                </li>
-              </ul>
-            </div>
-
-            <div class="offering-section">
-              <div class="offering-section-title">Ad Spend Tiers</div>
-              <table class="tier-table">
-                <thead>
-                  <tr>
-                    <th>Monthly Ad Spend</th>
-                    <th>Management Fee</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>$5,000 – $15,000</td>
-                    <td>$1,500 / mo</td>
-                  </tr>
-                  <tr>
-                    <td>$15,001 – $50,000</td>
-                    <td>$3,000 / mo</td>
-                  </tr>
-                  <tr>
-                    <td>$50,001 – $100,000</td>
-                    <td>$5,000 / mo</td>
-                  </tr>
-                  <tr>
-                    <td>$100,001+</td>
-                    <td>Custom <span class="tier-badge">Contact Us</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-          </div><!-- /gladiator-alacart -->
+            <button class="offering-tile" onclick="openOffering('gladiator-alacart-ppc')">
+              <div class="tile-info">
+                <span class="tile-category">A-La-Cart</span>
+                <span class="tile-name">PPC / Google Ads</span>
+              </div>
+              <span class="tile-arrow">
+                <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- ======================================================
-           CARD 3: PIMCON
-           ====================================================== -->
+      <!-- PIMCON -->
       <div class="card">
         <div class="card-head">
           <div class="card-logo-wrap preserve">
-            <img src="https://www.pimcon.org/wp-content/uploads/2025/11/logo-2026.png" alt="PIMCon" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-family:var(--font-head);font-size:1.6rem;font-weight:900;letter-spacing:-0.02em;color:#fcfaec\'>PIMCon</span>'">
+            <img src="https://www.pimcon.org/wp-content/uploads/2025/11/logo-2026.png" alt="PIMCon"
+              onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-family:var(--font-head);font-size:1.6rem;font-weight:900;color:#fcfaec\'>PIMCon</span>'">
           </div>
           <div class="card-name">PIMCon</div>
         </div>
         <div class="card-tabs">
-          <button class="card-tab active" onclick="switchTab(this, 'pimcon-core')">Core</button>
-          <button class="card-tab" onclick="switchTab(this, 'pimcon-alacart')">A-La-Cart</button>
+          <button class="card-tab active" onclick="switchTab(this,'pimcon-core')">Core</button>
+          <button class="card-tab" onclick="switchTab(this,'pimcon-alacart')">A-La-Cart</button>
         </div>
         <div class="card-body">
           <div class="card-panel active" id="pimcon-core">
-            <div class="coming-soon">
-              <div class="coming-soon-dot"></div>
-              <p>Core offerings coming soon</p>
-            </div>
+            <div class="coming-soon"><div class="coming-soon-dot"></div><p>Core offerings coming soon</p></div>
           </div>
           <div class="card-panel" id="pimcon-alacart">
-            <div class="coming-soon">
-              <div class="coming-soon-dot"></div>
-              <p>A-la-cart offerings coming soon</p>
-            </div>
+            <div class="coming-soon"><div class="coming-soon-dot"></div><p>A-la-cart offerings coming soon</p></div>
           </div>
         </div>
       </div>
 
-      <!-- ======================================================
-           CARD 4: PIM MEDIA
-           ====================================================== -->
+      <!-- PIM MEDIA -->
       <div class="card">
         <div class="card-head">
-          <div class="card-logo-wrap preserve" style="border-radius:8px; overflow:hidden; padding:0">
+          <div class="card-logo-wrap preserve" style="padding:0;overflow:hidden;border-radius:6px">
             <img src="https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/10/87/68/10876893-0fdd-8b1d-e285-db97942cb549/mza_4260014981542632776.jpeg/600x600bb.jpg"
-              alt="PIM Media"
-              style="width:80px; height:80px; object-fit:cover; border-radius:8px; filter:none"
-              onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-family:var(--font-head);font-size:1.3rem;font-weight:900;letter-spacing:-0.01em;color:#fcfaec\'>PIM Media</span>'"
-            >
+              alt="PIM Media" style="width:72px;height:72px;object-fit:cover;border-radius:6px;filter:none"
+              onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-family:var(--font-head);font-size:1.2rem;font-weight:900;color:#fcfaec\'>PIM Media</span>'">
           </div>
           <div class="card-name">PIM Media</div>
         </div>
         <div class="card-tabs">
-          <button class="card-tab active" onclick="switchTab(this, 'pimmedia-core')">Core</button>
-          <button class="card-tab" onclick="switchTab(this, 'pimmedia-alacart')">A-La-Cart</button>
+          <button class="card-tab active" onclick="switchTab(this,'pimmedia-core')">Core</button>
+          <button class="card-tab" onclick="switchTab(this,'pimmedia-alacart')">A-La-Cart</button>
         </div>
         <div class="card-body">
           <div class="card-panel active" id="pimmedia-core">
-            <div class="coming-soon">
-              <div class="coming-soon-dot"></div>
-              <p>Core offerings coming soon</p>
-            </div>
+            <div class="coming-soon"><div class="coming-soon-dot"></div><p>Core offerings coming soon</p></div>
           </div>
           <div class="card-panel" id="pimmedia-alacart">
-            <div class="coming-soon">
-              <div class="coming-soon-dot"></div>
-              <p>A-la-cart offerings coming soon</p>
-            </div>
+            <div class="coming-soon"><div class="coming-soon-dot"></div><p>A-la-cart offerings coming soon</p></div>
           </div>
         </div>
       </div>
 
-      <!-- ======================================================
-           CARD 5: OTHER
-           ====================================================== -->
+      <!-- OTHER -->
       <div class="card">
         <div class="card-head">
           <div class="card-logo-wrap">
-            <!-- Wordmark placeholder -->
-            <span style="font-family:var(--font-head); font-size:1.1rem; font-weight:900; letter-spacing:0.08em; text-transform:uppercase; color:rgba(252,250,236,0.5)">Other</span>
+            <span style="font-family:var(--font-head);font-size:1rem;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;color:rgba(252,250,236,0.4)">Other</span>
           </div>
           <div class="card-name">Other Services</div>
         </div>
         <div class="card-tabs">
-          <button class="card-tab active" onclick="switchTab(this, 'other-core')">Core</button>
-          <button class="card-tab" onclick="switchTab(this, 'other-alacart')">A-La-Cart</button>
+          <button class="card-tab active" onclick="switchTab(this,'other-core')">Core</button>
+          <button class="card-tab" onclick="switchTab(this,'other-alacart')">A-La-Cart</button>
         </div>
         <div class="card-body">
           <div class="card-panel active" id="other-core">
-            <div class="coming-soon">
-              <div class="coming-soon-dot"></div>
-              <p>Core offerings coming soon</p>
-            </div>
+            <div class="coming-soon"><div class="coming-soon-dot"></div><p>Core offerings coming soon</p></div>
           </div>
           <div class="card-panel" id="other-alacart">
-            <div class="coming-soon">
-              <div class="coming-soon-dot"></div>
-              <p>A-la-cart offerings coming soon</p>
-            </div>
+            <div class="coming-soon"><div class="coming-soon-dot"></div><p>A-la-cart offerings coming soon</p></div>
           </div>
         </div>
       </div>
 
-    </div><!-- /cards-grid -->
+    </div>
   </main>
 
-  <footer class="hub-footer">
-    <span class="hub-footer-left">Attorney Rankings Services Hub &nbsp;·&nbsp; Internal Use Only &nbsp;·&nbsp; Confidential</span>
-    <span class="hub-footer-right">© 2026 Attorney Rankings</span>
+  <footer class="site-footer">
+    <span class="site-footer-left">Attorney Rankings Services Hub &nbsp;·&nbsp; Internal Use Only &nbsp;·&nbsp; Confidential</span>
+    <span class="site-footer-right">© 2026 Attorney Rankings</span>
   </footer>
+</div>
 
-</div><!-- /hub -->
+
+<!-- ============================================================
+     3. OFFERING DETAIL PAGE
+     ============================================================ -->
+<div id="offering-page">
+  <div class="site-stripe"></div>
+  <header class="site-header">
+    <div class="site-header-left">
+      <button class="back-btn" onclick="closeOffering()">
+        <svg viewBox="0 0 10 10" fill="none"><path d="M7 5H3M5 3L3 5l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back
+      </button>
+      <div class="header-title-block">
+        <div class="header-kicker" id="op-kicker"><!-- filled by JS --></div>
+        <h1 class="header-title" id="op-title"><!-- filled by JS --></h1>
+      </div>
+    </div>
+    <div class="header-meta">Attorney Rankings Services Hub<br>Confidential — internal use only</div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="offering-breadcrumb">
+    <span>Hub</span>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-entity" id="op-breadcrumb-entity"></span>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-cat" id="op-breadcrumb-cat"></span>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-active" id="op-breadcrumb-name"></span>
+  </div>
+
+  <!-- Hero -->
+  <div class="offering-hero">
+    <div class="offering-hero-logo" id="op-logo-wrap">
+      <img id="op-logo" src="" alt="">
+    </div>
+    <div class="offering-hero-text">
+      <div class="offering-hero-kicker" id="op-hero-kicker"></div>
+      <div class="offering-hero-title" id="op-hero-title"></div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="offering-content" id="op-content">
+    <!-- injected by JS -->
+  </div>
+
+  <footer class="site-footer">
+    <span class="site-footer-left">Attorney Rankings Services Hub &nbsp;·&nbsp; Internal Use Only &nbsp;·&nbsp; Confidential</span>
+    <span class="site-footer-right">© 2026 Attorney Rankings</span>
+  </footer>
+</div>
 
 
 <script>
-  /* ==============================================
-     PASSWORD
-     ============================================== */
-  const PASS = '1234';
+/* ==============================================
+   OFFERING DATA
+   ============================================== */
+const LOGOS = {
+  gladiator: {
+    src: 'https://cdn-ilapehp.nitrocdn.com/JzcuNEOunVkUEngShcLekRVajrmSTreT/assets/images/optimized/rev-5a5341b/gladiatorlawmarketing.com/wp-content/uploads/2024/06/gladiator-law-marketing_logo.png',
+    alt: 'Gladiator Law Marketing',
+    preserve: false
+  }
+};
 
-  function checkPassword() {
-    const input = document.getElementById('pw-input');
-    const error = document.getElementById('pw-error');
+const check = `<span class="check-icon"><svg viewBox="0 0 10 8" fill="none"><polyline points="1,4 4,7 9,1" stroke="#14364d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`;
 
-    if (input.value === PASS) {
-      document.getElementById('pw-screen').style.display = 'none';
-      const hub = document.getElementById('hub');
-      hub.style.display = 'block';
-      // Trigger fade in
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          hub.classList.add('visible');
-          // Stagger card reveals
-          document.querySelectorAll('.card').forEach((card, i) => {
-            setTimeout(() => card.classList.add('in'), 80 + i * 80);
-          });
-        });
+const offerings = {
+
+  'gladiator-core-3k': {
+    entity: 'Gladiator',
+    entityKey: 'gladiator',
+    category: 'Core',
+    title: '3K Offering',
+    html: `
+      <div class="offering-placeholder">
+        <p><strong>Note:</strong> This is test/placeholder content. The full 3K Offering document is being finalized and will be updated here shortly.</p>
+      </div>
+      <div class="sow-section">
+        <div class="sow-section-title">Package Overview</div>
+        <ul class="service-list">
+          <li>${check} Dedicated Account Manager</li>
+          <li>${check} Monthly Strategy Sessions</li>
+          <li>${check} Performance Reporting &amp; Analytics</li>
+          <li>${check} Content Strategy Development</li>
+          <li>${check} Quarterly Business Reviews</li>
+        </ul>
+      </div>
+      <div class="sow-section">
+        <div class="sow-section-title">Investment</div>
+        <table class="tier-table">
+          <thead><tr><th>Package</th><th>Monthly Investment</th></tr></thead>
+          <tbody>
+            <tr><td>3K Core Package</td><td>$3,000 / mo</td></tr>
+          </tbody>
+        </table>
+      </div>
+    `
+  },
+
+  'gladiator-alacart-ppc': {
+    entity: 'Gladiator',
+    entityKey: 'gladiator',
+    category: 'A-La-Cart',
+    title: 'PPC / Google Ads',
+    html: `
+      <div class="sow-section">
+        <div class="sow-section-title">Statement of Work</div>
+        <ul class="service-list">
+          <li>${check} Google Ads Setup &amp; Optimization</li>
+          <li>${check} Dedicated Google Ads Specialist</li>
+          <li>${check} PPC Campaign Management</li>
+          <li>${check} Keyword Research &amp; Selection</li>
+          <li>${check} Landing Page Creation</li>
+          <li>${check} Ongoing Keyword Analysis &amp; Revision</li>
+          <li>${check} Ad Campaign Copywriting Enhancements</li>
+          <li>${check} Comprehensive Bid Strategy &amp; Budget Management</li>
+          <li>${check} Reporting, Analytics &amp; Lead Tracking</li>
+        </ul>
+      </div>
+      <div class="sow-section">
+        <div class="sow-section-title">Ad Spend Tiers</div>
+        <table class="tier-table">
+          <thead>
+            <tr><th>Monthly Ad Spend</th><th>Management Fee</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>$5,000 – $15,000</td><td>$1,500 / mo</td></tr>
+            <tr><td>$15,001 – $50,000</td><td>$3,000 / mo</td></tr>
+            <tr><td>$50,001 – $100,000</td><td>$5,000 / mo</td></tr>
+            <tr><td>$100,001+</td><td>Custom <span class="tier-badge">Contact Us</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    `
+  }
+
+};
+
+/* ==============================================
+   PASSWORD
+   ============================================== */
+const PASS = '1234';
+
+function checkPassword() {
+  const input = document.getElementById('pw-input');
+  const error = document.getElementById('pw-error');
+  if (input.value === PASS) {
+    document.getElementById('pw-screen').style.display = 'none';
+    const hub = document.getElementById('hub');
+    hub.style.display = 'block';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      hub.classList.add('visible');
+      document.querySelectorAll('.card').forEach((card, i) => {
+        setTimeout(() => card.classList.add('in'), 80 + i * 80);
       });
-    } else {
-      input.classList.add('error');
-      error.classList.add('show');
-      input.value = '';
-      setTimeout(() => {
-        input.classList.remove('error');
-        error.classList.remove('show');
-      }, 2000);
-    }
+    }));
+  } else {
+    input.classList.add('error');
+    error.classList.add('show');
+    input.value = '';
+    setTimeout(() => { input.classList.remove('error'); error.classList.remove('show'); }, 2000);
+  }
+}
+document.getElementById('pw-input').addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
+
+/* ==============================================
+   HUB TABS
+   ============================================== */
+function switchTab(btn, panelId) {
+  const tabBar = btn.closest('.card-tabs');
+  tabBar.querySelectorAll('.card-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const card = btn.closest('.card');
+  card.querySelectorAll('.card-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(panelId).classList.add('active');
+}
+
+/* ==============================================
+   OFFERING NAVIGATION
+   ============================================== */
+function openOffering(id) {
+  const o = offerings[id];
+  if (!o) return;
+
+  const logo = LOGOS[o.entityKey];
+
+  // Populate header
+  document.getElementById('op-kicker').textContent = o.entity + ' — ' + o.category;
+  document.getElementById('op-title').textContent = o.title;
+
+  // Breadcrumb
+  document.getElementById('op-breadcrumb-entity').textContent = o.entity;
+  document.getElementById('op-breadcrumb-cat').textContent = o.category;
+  document.getElementById('op-breadcrumb-name').textContent = o.title;
+
+  // Hero
+  document.getElementById('op-hero-kicker').textContent = o.entity + ' · ' + o.category;
+  document.getElementById('op-hero-title').textContent = o.title;
+
+  const logoWrap = document.getElementById('op-logo-wrap');
+  const logoImg = document.getElementById('op-logo');
+  if (logo) {
+    logoImg.src = logo.src;
+    logoImg.alt = logo.alt;
+    logoWrap.classList.toggle('preserve', logo.preserve);
+  } else {
+    logoWrap.style.display = 'none';
   }
 
-  // Allow Enter key on password input
-  document.getElementById('pw-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') checkPassword();
-  });
+  // Content
+  document.getElementById('op-content').innerHTML = o.html;
 
-  /* ==============================================
-     TABS
-     ============================================== */
-  function switchTab(btn, panelId) {
-    // Deactivate sibling tabs
-    const tabBar = btn.closest('.card-tabs');
-    tabBar.querySelectorAll('.card-tab').forEach(t => t.classList.remove('active'));
-    btn.classList.add('active');
+  // Show offering page
+  document.getElementById('hub').style.display = 'none';
+  const op = document.getElementById('offering-page');
+  op.classList.add('visible');
+  window.scrollTo(0, 0);
+}
 
-    // Deactivate sibling panels
-    const card = btn.closest('.card');
-    card.querySelectorAll('.card-panel').forEach(p => p.classList.remove('active'));
-    document.getElementById(panelId).classList.add('active');
-  }
+function closeOffering() {
+  document.getElementById('offering-page').classList.remove('visible');
+  const hub = document.getElementById('hub');
+  hub.style.display = 'block';
+  window.scrollTo(0, 0);
+}
 </script>
 
 </body>
