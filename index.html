@@ -651,7 +651,7 @@ button { cursor: pointer; font-family: inherit; }
         <div class="card-tabs">
           <button class="card-tab active" onclick="switchTab(this,'rankings-core')">Core</button>
           <button class="card-tab" onclick="switchTab(this,'rankings-alacart')">A-La-Cart</button>
-          <button class="card-tab" onclick="switchTab(this,'rankings-sprints')">Sprints</button>
+          <button class="card-tab" onclick="switchTab(this,'rankings-sprints')">Module Sprints</button>
         <button class="add-drive-btn" title="Refresh from Drive" onclick="refreshCard('rankings', this)"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8a5 5 0 1 1-1-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><polyline points="12,2 12,5.5 8.5,5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
         <div class="card-body">
           <div class="card-panel active" id="rankings-core">
@@ -796,15 +796,11 @@ button { cursor: pointer; font-family: inherit; }
           <div class="card-name">PIMCon</div>
         </div>
         <div class="card-tabs">
-          <button class="card-tab active" onclick="switchTab(this,'pimcon-core')">Core</button>
-          <button class="card-tab" onclick="switchTab(this,'pimcon-alacart')">A-La-Cart</button>
+          <button class="card-tab active" onclick="switchTab(this,'pimcon-services')">Services</button>
         <button class="add-drive-btn" title="Refresh from Drive" onclick="refreshCard('pimcon', this)"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8a5 5 0 1 1-1-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><polyline points="12,2 12,5.5 8.5,5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
         <div class="card-body">
-          <div class="card-panel active" id="pimcon-core">
-            <div class="coming-soon"><div class="coming-soon-dot"></div><p>Core offerings coming soon</p></div>
-          </div>
-          <div class="card-panel" id="pimcon-alacart">
-            <div class="coming-soon"><div class="coming-soon-dot"></div><p>A-la-cart offerings coming soon</p></div>
+          <div class="card-panel active" id="pimcon-services">
+            <div class="coming-soon"><div class="coming-soon-dot"></div><p>Services coming soon</p></div>
           </div>
         
         <div class="add-doc-bar hidden" id="pimcon-add-bar"><input class="add-doc-input" id="pimcon-add-input" type="text" placeholder="Paste Google Doc URL to add offering…" onkeydown="if(event.key==='Enter')addDocFromBar('pimcon')" /><button class="add-doc-go" id="pimcon-add-go" onclick="addDocFromBar('pimcon')">Add</button></div>
@@ -822,15 +818,11 @@ button { cursor: pointer; font-family: inherit; }
           <div class="card-name">PIM Media</div>
         </div>
         <div class="card-tabs">
-          <button class="card-tab active" onclick="switchTab(this,'pimmedia-core')">Core</button>
-          <button class="card-tab" onclick="switchTab(this,'pimmedia-alacart')">A-La-Cart</button>
+          <button class="card-tab active" onclick="switchTab(this,'pimmedia-services')">Services</button>
         <button class="add-drive-btn" title="Refresh from Drive" onclick="refreshCard('pimmedia', this)"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8a5 5 0 1 1-1-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><polyline points="12,2 12,5.5 8.5,5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
         <div class="card-body">
-          <div class="card-panel active" id="pimmedia-core">
-            <div class="coming-soon"><div class="coming-soon-dot"></div><p>Core offerings coming soon</p></div>
-          </div>
-          <div class="card-panel" id="pimmedia-alacart">
-            <div class="coming-soon"><div class="coming-soon-dot"></div><p>A-la-cart offerings coming soon</p></div>
+          <div class="card-panel active" id="pimmedia-services">
+            <div class="coming-soon"><div class="coming-soon-dot"></div><p>Services coming soon</p></div>
           </div>
         
         <div class="add-doc-bar hidden" id="pimmedia-add-bar"><input class="add-doc-input" id="pimmedia-add-input" type="text" placeholder="Paste Google Doc URL to add offering…" onkeydown="if(event.key==='Enter')addDocFromBar('pimmedia')" /><button class="add-doc-go" id="pimmedia-add-go" onclick="addDocFromBar('pimmedia')">Add</button></div>
@@ -1427,8 +1419,8 @@ let currentOfferingId = null;
   const ENTITY_PANELS = {
     rankings:  ['rankings-core','rankings-alacart','rankings-sprints'],
     gladiator: ['gladiator-core','gladiator-alacart'],
-    pimcon:    ['pimcon-core','pimcon-alacart'],
-    pimmedia:  ['pimmedia-core','pimmedia-alacart'],
+    pimcon:    ['pimcon-services'],
+    pimmedia:  ['pimmedia-services'],
     other:     ['other-core','other-alacart'],
   };
 
