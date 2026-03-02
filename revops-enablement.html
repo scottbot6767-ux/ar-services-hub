@@ -8,589 +8,407 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;700;900&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
 <style>
-/* ── TOKENS ── */
 :root {
-  --ink:    #0d1a26;
-  --ink-2:  #172636;
-  --ink-3:  #1e3245;
-  --cream:  #f5f0e4;
+  --navy:   #14364d;
+  --navy-2: #1e4a67;
+  --cream:  #fcfaec;
+  --bg:     #f0ece0;
   --white:  #ffffff;
-  --dim:    rgba(245,240,228,0.45);
-  --faint:  rgba(245,240,228,0.15);
+  --dark:   #282828;
   --yellow: #eedc82;
   --lime:   #c6e005;
-  --blue:   #4aacdf;
-  --red:    #e05c4b;
+  --blue:   #3a93cf;
+  --muted:  #7a8a96;
+  --rule:   rgba(20,54,77,0.12);
 
   --font-display: 'Barlow Condensed', sans-serif;
   --font-mono:    'DM Mono', monospace;
   --font-body:    'DM Sans', sans-serif;
 }
 
-/* ── RESET ── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { font-size: 16px; scroll-behavior: smooth; }
+html { font-size: 16px; }
 body {
   font-family: var(--font-body);
-  background: var(--ink);
-  color: var(--cream);
-  min-height: 100vh;
-  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--dark);
 }
 
-/* ── NOISE TEXTURE OVERLAY ── */
-body::before {
-  content: '';
-  position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-size: 128px;
-}
-
-/* ── HEADER NAV ── */
+/* ── NAV ── */
 .site-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--navy);
+  border-bottom: 3px solid var(--yellow);
   padding: 0 3rem;
   height: 60px;
   display: flex; align-items: center; justify-content: space-between;
-  background: rgba(13,26,38,0.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--faint);
+  position: sticky; top: 0; z-index: 10;
 }
 .nav-brand {
   font-family: var(--font-display);
   font-weight: 900; font-size: 1rem;
-  letter-spacing: 0.12em; text-transform: uppercase;
+  letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--yellow); text-decoration: none;
 }
 .nav-label {
   font-family: var(--font-mono);
-  font-size: 0.65rem; color: var(--dim);
-  letter-spacing: 0.12em; text-transform: uppercase;
+  font-size: 0.62rem; color: rgba(255,255,255,0.4);
+  letter-spacing: 0.1em; text-transform: uppercase;
 }
 
-/* ── WRAPPER ── */
-.page { position: relative; z-index: 1; }
+/* ── PAGE ── */
+.page { max-width: 1060px; margin: 0 auto; padding: 0 2.5rem 6rem; }
 
-/* ── HERO ── */
-.hero {
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  padding: 0 clamp(2rem, 8vw, 8rem);
-  padding-top: 120px;
-  padding-bottom: 80px;
-  position: relative;
-  border-bottom: 1px solid var(--faint);
-}
-.hero-grid-lines {
-  position: absolute; inset: 0; pointer-events: none;
-  background-image:
-    linear-gradient(rgba(238,220,130,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(238,220,130,0.04) 1px, transparent 1px);
-  background-size: 64px 64px;
-}
-.hero-content { align-self: center; max-width: 1100px; }
-
-.hero-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--yellow); margin-bottom: 2rem;
-  display: flex; align-items: center; gap: 0.75rem;
-}
-.hero-eyebrow::before {
-  content: ''; display: block;
-  width: 32px; height: 1px; background: var(--yellow);
-}
-
-.hero-headline {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 7vw, 6.5rem);
-  font-weight: 900; line-height: 0.92;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-  color: var(--white);
-  margin-bottom: 2.5rem;
-}
-.hero-headline em {
-  font-style: normal;
-  color: var(--yellow);
-  -webkit-text-fill-color: var(--yellow);
-}
-
-.hero-positioning {
-  max-width: 680px;
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  font-weight: 300; line-height: 1.7;
-  color: var(--dim);
-  border-left: 3px solid var(--yellow);
-  padding-left: 1.5rem;
+/* ── HEADER BLOCK ── */
+.doc-header {
+  padding: 4rem 0 3rem;
+  border-bottom: 2px solid var(--navy);
   margin-bottom: 3.5rem;
 }
-.hero-positioning strong { color: var(--cream); font-weight: 500; }
-
-.hero-scroll-cue {
-  display: flex; align-items: center; gap: 0.6rem;
-  font-family: var(--font-mono); font-size: 0.65rem;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--faint);
+.doc-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 1rem;
 }
-.hero-scroll-cue svg { width: 16px; height: 16px; stroke: var(--faint); fill: none; }
-
-/* ── SECTION BASE ── */
-.section {
-  padding: clamp(4rem, 8vw, 7rem) clamp(2rem, 8vw, 8rem);
-  border-bottom: 1px solid var(--faint);
-}
-
-/* ── PILLARS INTRO ── */
-.pillars-intro {
-  max-width: 1200px; margin: 0 auto;
-  display: flex; align-items: flex-end;
-  justify-content: space-between; gap: 3rem;
-  flex-wrap: wrap;
-}
-.pillars-intro-text h2 {
+.doc-title {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  font-weight: 900; text-transform: uppercase;
-  letter-spacing: 0.02em; color: var(--white);
-  margin-bottom: 0.75rem;
-}
-.pillars-intro-text p {
-  font-size: 0.95rem; color: var(--dim); line-height: 1.65;
-  max-width: 520px;
-}
-.pillars-nav {
-  display: flex; gap: 0.5rem; flex-shrink: 0;
-}
-.pillar-nav-item {
-  font-family: var(--font-mono); font-size: 0.65rem;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 0.4rem 0.75rem; border-radius: 2px;
-  border: 1px solid var(--faint); color: var(--dim);
-  text-decoration: none;
-  transition: all 0.2s;
-}
-.pillar-nav-item:hover { border-color: var(--yellow); color: var(--yellow); }
-
-/* ── PILLAR SECTIONS ── */
-.pillar {
-  padding: clamp(4rem, 8vw, 7rem) clamp(2rem, 8vw, 8rem);
-  border-bottom: 1px solid var(--faint);
-  position: relative;
-}
-.pillar-inner { max-width: 1200px; margin: 0 auto; }
-
-.pillar-top {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 3rem 4rem;
-  margin-bottom: 4rem;
-  align-items: start;
-}
-.pillar-number {
-  font-family: var(--font-display);
-  font-size: clamp(6rem, 12vw, 10rem);
-  font-weight: 900; line-height: 1;
-  color: var(--faint);
-  letter-spacing: -0.04em;
-  -webkit-text-stroke: 1px rgba(245,240,228,0.1);
-  user-select: none;
-  padding-top: 0.1em;
-}
-.pillar-header { }
-.pillar-tag {
-  font-family: var(--font-mono); font-size: 0.65rem;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem;
-}
-.pillar-tag-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--yellow);
-}
-.pillar-1 .pillar-tag-dot { background: var(--blue); }
-.pillar-2 .pillar-tag-dot { background: var(--lime); }
-.pillar-3 .pillar-tag-dot { background: var(--yellow); }
-.pillar-tag-text { color: var(--dim); }
-
-.pillar-headline {
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
   font-weight: 900; text-transform: uppercase;
   letter-spacing: 0.01em; line-height: 0.95;
-  color: var(--white); margin-bottom: 1.25rem;
+  color: var(--navy); margin-bottom: 1.5rem;
 }
-.pillar-1 .pillar-headline { color: var(--blue); }
-.pillar-2 .pillar-headline { color: var(--lime); }
-.pillar-3 .pillar-headline { color: var(--yellow); }
-
-.pillar-body {
-  font-size: 1rem; line-height: 1.7; color: var(--dim);
-  max-width: 560px; font-weight: 300;
+.doc-statement {
+  max-width: 700px;
+  font-size: 1.05rem; line-height: 1.75;
+  color: var(--dark); font-weight: 300;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--yellow);
 }
-.pillar-body strong { color: var(--cream); font-weight: 500; }
+.doc-statement strong { font-weight: 600; color: var(--navy); }
 
-/* ── EXAMPLES GRID ── */
-.examples-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1px;
-  background: var(--faint);
-  border: 1px solid var(--faint);
-  border-radius: 4px;
-  overflow: hidden;
+/* ── FRAMEWORK INTRO ── */
+.framework-intro {
   margin-bottom: 3rem;
 }
-.example-item {
-  background: var(--ink-2);
-  padding: 1.1rem 1.4rem;
-  display: flex; align-items: flex-start; gap: 0.75rem;
-  transition: background 0.15s;
+.framework-label {
+  font-family: var(--font-display);
+  font-size: 1.4rem; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--navy); margin-bottom: 0.4rem;
 }
-.example-item:hover { background: var(--ink-3); }
-.example-bullet {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--faint); margin-top: 0.5rem; flex-shrink: 0;
-}
-.pillar-1 .example-bullet { background: rgba(74,172,223,0.5); }
-.pillar-2 .example-bullet { background: rgba(198,224,5,0.5); }
-.pillar-3 .example-bullet { background: rgba(238,220,130,0.5); }
-.example-text {
-  font-size: 0.875rem; line-height: 1.45; color: var(--cream);
-  font-weight: 400;
+.framework-sub {
+  font-size: 0.875rem; color: var(--muted); line-height: 1.55;
+  max-width: 580px;
 }
 
-/* ── OUTCOMES ── */
-.outcomes-bar {
-  display: flex; flex-wrap: wrap; gap: 0.5rem;
-  align-items: center;
+/* ── PILLAR ── */
+.pillar {
+  margin-bottom: 3rem;
+  background: var(--cream);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.pillar-header-bar {
+  padding: 1.4rem 2rem;
+  display: flex; align-items: baseline; gap: 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+.pillar-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem; font-weight: 500;
+  color: var(--muted); flex-shrink: 0;
+  letter-spacing: 0.1em;
+}
+.pillar-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 900; text-transform: uppercase;
+  letter-spacing: 0.02em; line-height: 1;
+}
+.pillar-1 .pillar-name { color: var(--blue); }
+.pillar-2 .pillar-name { color: var(--navy); }
+.pillar-3 .pillar-name { color: var(--navy-2); }
+
+.pillar-tagline {
+  font-family: var(--font-display);
+  font-size: 0.85rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--muted); margin-left: auto; flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.pillar-body {
+  padding: 1.75rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 3rem;
+  border-bottom: 1px solid var(--rule);
+}
+.pillar-desc {
+  font-size: 0.9rem; line-height: 1.75;
+  color: var(--dark); font-weight: 300;
+}
+.pillar-desc strong { font-weight: 600; color: var(--navy); }
+
+.examples-col { }
+.examples-label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.75rem;
+}
+.examples-list {
+  list-style: none; display: flex; flex-direction: column; gap: 0.35rem;
+}
+.examples-list li {
+  font-size: 0.825rem; line-height: 1.4; color: var(--dark);
+  padding-left: 1rem; position: relative;
+}
+.examples-list li::before {
+  content: '—';
+  position: absolute; left: 0;
+  color: var(--muted); font-size: 0.7rem;
+}
+
+.pillar-outcomes {
+  padding: 1rem 2rem;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+  background: rgba(20,54,77,0.03);
 }
 .outcomes-label {
-  font-family: var(--font-mono); font-size: 0.6rem;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--dim); margin-right: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); margin-right: 0.25rem;
 }
-.outcome-pill {
-  font-family: var(--font-mono); font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  padding: 0.35rem 0.9rem;
-  border-radius: 2px;
-  font-weight: 500;
+.outcome-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem; letter-spacing: 0.04em;
+  padding: 0.25rem 0.65rem; border-radius: 2px;
+  background: rgba(20,54,77,0.07); color: var(--navy);
+  border: 1px solid rgba(20,54,77,0.12);
 }
-.pillar-1 .outcome-pill { background: rgba(74,172,223,0.12); color: var(--blue); border: 1px solid rgba(74,172,223,0.25); }
-.pillar-2 .outcome-pill { background: rgba(198,224,5,0.1); color: var(--lime); border: 1px solid rgba(198,224,5,0.2); }
-.pillar-3 .outcome-pill { background: rgba(238,220,130,0.1); color: var(--yellow); border: 1px solid rgba(238,220,130,0.2); }
+.pillar-1 .outcome-tag { background: rgba(58,147,207,0.1); color: var(--blue); border-color: rgba(58,147,207,0.2); }
+.pillar-3 .outcome-tag { background: rgba(198,224,5,0.1); color: #4a6200; border-color: rgba(198,224,5,0.3); }
 
 /* ── EQUATION ── */
-.equation-section {
-  padding: clamp(5rem, 10vw, 9rem) clamp(2rem, 8vw, 8rem);
-  background: var(--ink-2);
-  position: relative; overflow: hidden;
+.equation {
+  margin-top: 3.5rem; padding-top: 3rem;
+  border-top: 2px solid var(--navy);
 }
-.equation-section::before {
-  content: '';
-  position: absolute; inset: 0; pointer-events: none;
-  background-image:
-    linear-gradient(rgba(238,220,130,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(238,220,130,0.03) 1px, transparent 1px);
-  background-size: 48px 48px;
+.eq-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 1.5rem;
 }
-.equation-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
-
-.equation-eyebrow {
-  font-family: var(--font-mono); font-size: 0.65rem;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--yellow); margin-bottom: 3rem;
-  display: flex; align-items: center; gap: 0.75rem;
-}
-.equation-eyebrow::before {
-  content: ''; display: block;
-  width: 32px; height: 1px; background: var(--yellow);
-}
-
-.equation-display {
-  display: flex; align-items: center; flex-wrap: wrap;
-  gap: 1rem 0;
-  margin-bottom: 3.5rem;
+.eq-formula {
+  display: flex; align-items: baseline; flex-wrap: wrap;
+  gap: 0.25rem 0; margin-bottom: 2.5rem;
 }
 .eq-term {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 6vw, 5rem);
+  font-size: clamp(2rem, 5vw, 3.8rem);
   font-weight: 900; text-transform: uppercase;
   letter-spacing: -0.01em; line-height: 1;
 }
-.eq-time    { color: var(--blue); }
-.eq-skill   { color: var(--lime); }
-.eq-lever   { color: var(--yellow); }
-.eq-result  { color: var(--white); }
-
+.eq-time   { color: var(--blue); }
+.eq-skill  { color: var(--navy); }
+.eq-lever  { color: var(--navy-2); }
+.eq-result { color: var(--dark); }
 .eq-op {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 400; color: var(--faint);
-  padding: 0 clamp(0.5rem, 1.5vw, 1.25rem);
-  line-height: 1;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 400; color: var(--muted);
+  padding: 0 clamp(0.4rem, 1.2vw, 1rem);
 }
 
-.eq-sub {
-  display: block; font-family: var(--font-mono);
-  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--dim); margin-top: 0.3rem;
-  font-weight: 400;
+.eq-close {
+  max-width: 680px; display: flex; flex-direction: column; gap: 0.9rem;
 }
-
-.equation-close {
-  max-width: 700px;
-  font-size: clamp(1rem, 2vw, 1.15rem);
-  line-height: 1.75; color: var(--dim); font-weight: 300;
+.eq-close p {
+  font-size: 0.925rem; line-height: 1.75;
+  color: var(--dark); font-weight: 300;
 }
-.equation-close strong { color: var(--cream); font-weight: 500; }
-.equation-close p + p { margin-top: 1em; }
+.eq-close strong { font-weight: 600; color: var(--navy); }
 
 /* ── FOOTER ── */
 .page-footer {
-  padding: 2rem clamp(2rem, 8vw, 8rem);
-  display: flex; align-items: center; justify-content: space-between;
-  border-top: 1px solid var(--faint);
-  flex-wrap: wrap; gap: 1rem;
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 0.5rem;
 }
-.footer-brand {
+.footer-org {
   font-family: var(--font-display);
-  font-weight: 900; font-size: 0.85rem;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--yellow);
+  font-size: 0.8rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--navy);
 }
-.footer-note {
-  font-family: var(--font-mono); font-size: 0.62rem;
-  color: var(--dim); letter-spacing: 0.1em;
+.footer-meta {
+  font-family: var(--font-mono);
+  font-size: 0.6rem; color: var(--muted); letter-spacing: 0.1em;
 }
-
-/* ── ANIMATIONS ── */
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.hero-content > * {
-  opacity: 0; animation: fade-up 0.7s cubic-bezier(.2,0,.2,1) forwards;
-}
-.hero-eyebrow      { animation-delay: 0.1s; }
-.hero-headline     { animation-delay: 0.25s; }
-.hero-positioning  { animation-delay: 0.4s; }
-.hero-scroll-cue   { animation-delay: 0.55s; }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 720px) {
+@media (max-width: 680px) {
   .site-nav { padding: 0 1.5rem; }
-  .pillar-top { grid-template-columns: 1fr; gap: 0.5rem 0; }
-  .pillar-number { font-size: 5rem; }
-  .equation-display { flex-direction: column; align-items: flex-start; }
-  .eq-op { padding: 0; }
+  .page { padding: 0 1.5rem 4rem; }
+  .pillar-body { grid-template-columns: 1fr; }
+  .pillar-tagline { display: none; }
+  .eq-op { padding: 0 0.4rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="site-nav">
   <a href="index.html" class="nav-brand">Rankings.io</a>
-  <span class="nav-label">Revenue Operations & Enablement</span>
+  <span class="nav-label">Internal · Revenue Operations & Enablement</span>
 </nav>
 
 <div class="page">
 
-  <!-- ══ HERO ══ -->
-  <section class="hero">
-    <div class="hero-grid-lines"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">Revenue Operations & Enablement</div>
-      <h1 class="hero-headline">
-        Built to<br>
-        <em>Multiply</em><br>
-        Revenue.
-      </h1>
-      <p class="hero-positioning">
-        Revenue Operations and Enablement exists to <strong>multiply revenue</strong> by building a clean and fair operating system, improving rep effectiveness, and delivering <strong>high-leverage value</strong> into the sales process. This is the system that drives clarity, fairness, and performance across the entire revenue engine.
+  <!-- Header -->
+  <div class="doc-header">
+    <div class="doc-eyebrow">Rankings.io · Revenue Operations & Enablement</div>
+    <h1 class="doc-title">Revenue Operations<br>& Enablement</h1>
+    <p class="doc-statement">
+      Revenue Operations and Enablement exists to <strong>multiply revenue</strong> by building a clean and fair operating system, improving rep effectiveness, and delivering <strong>high-leverage value</strong> into the sales process. This is the system that drives clarity, fairness, and performance across the entire revenue engine.
+    </p>
+  </div>
+
+  <!-- Framework intro -->
+  <div class="framework-intro">
+    <div class="framework-label">The 3 Pillars of Revenue Operations & Enablement</div>
+    <p class="framework-sub">Three interconnected systems. Each one creates the conditions for the next. Together, they compound into a scalable, accountable revenue operation.</p>
+  </div>
+
+  <!-- ── PILLAR 1 ── -->
+  <div class="pillar pillar-1">
+    <div class="pillar-header-bar">
+      <span class="pillar-num">01</span>
+      <span class="pillar-name">Reduce Friction</span>
+      <span class="pillar-tagline">Build a Clean Revenue Engine</span>
+    </div>
+    <div class="pillar-body">
+      <p class="pillar-desc">
+        Friction is <strong>anything that slows, confuses, misallocates, or distracts</strong> revenue teams. It lives in the CRM, in territory assignments, in compensation structures, and in the handoff between marketing and sales. Eliminating it creates speed, clarity, and accountability — not just in how reps operate, but in how opportunity is distributed. A system that isn't fair isn't clean.
       </p>
-      <div class="hero-scroll-cue">
-        <svg viewBox="0 0 24 24" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-        The 3 Pillars
+      <div class="examples-col">
+        <div class="examples-label">Includes</div>
+        <ul class="examples-list">
+          <li>CRM architecture and pipeline clarity</li>
+          <li>Strong, fair books of business</li>
+          <li>Lead enrichment and routing logic</li>
+          <li>Territory design and assignment rules</li>
+          <li>Automated workflows and reporting</li>
+          <li>Clean marketing-to-sales handoffs</li>
+          <li>Compensation clarity and incentive alignment</li>
+          <li>Tool consolidation and process documentation</li>
+          <li>Accurate forecasting infrastructure</li>
+        </ul>
       </div>
     </div>
-  </section>
+    <div class="pillar-outcomes">
+      <span class="outcomes-label">Outcomes</span>
+      <span class="outcome-tag">More time selling</span>
+      <span class="outcome-tag">Clear accountability</span>
+      <span class="outcome-tag">Fair opportunity distribution</span>
+      <span class="outcome-tag">Reliable forecasting</span>
+      <span class="outcome-tag">Faster deal velocity</span>
+    </div>
+  </div>
 
-  <!-- ══ PILLARS INTRO ══ -->
-  <section class="section">
-    <div class="pillars-intro">
-      <div class="pillars-intro-text">
-        <h2>The 3 Pillars of Revenue Operations & Enablement</h2>
-        <p>Three interconnected systems that compound. Each pillar stands on its own. Together, they build a revenue engine that is efficient, fair, and built to scale.</p>
-      </div>
-      <div class="pillars-nav">
-        <a href="#pillar-1" class="pillar-nav-item">01 / Friction</a>
-        <a href="#pillar-2" class="pillar-nav-item">02 / Effectiveness</a>
-        <a href="#pillar-3" class="pillar-nav-item">03 / Value</a>
+  <!-- ── PILLAR 2 ── -->
+  <div class="pillar pillar-2">
+    <div class="pillar-header-bar">
+      <span class="pillar-num">02</span>
+      <span class="pillar-name">Increase Effectiveness</span>
+      <span class="pillar-tagline">Multiply Rep Performance</span>
+    </div>
+    <div class="pillar-body">
+      <p class="pillar-desc">
+        Removing friction creates space. <strong>Effectiveness is what fills it.</strong> This pillar builds the skills, frameworks, and feedback systems that make reps consistently better — faster onboarding, sharper discovery, stronger objection handling, and coaching that scales. Excellence isn't an accident. It's infrastructure.
+      </p>
+      <div class="examples-col">
+        <div class="examples-label">Includes</div>
+        <ul class="examples-list">
+          <li>Structured onboarding and ramp plans</li>
+          <li>Discovery and qualification frameworks</li>
+          <li>Objection handling systems</li>
+          <li>Competitive positioning and battlecards</li>
+          <li>Coaching cadences and scorecards</li>
+          <li>Call review and performance analytics</li>
+          <li>Messaging refinement and talk track testing</li>
+          <li>Data-driven performance feedback loops</li>
+        </ul>
       </div>
     </div>
-  </section>
+    <div class="pillar-outcomes">
+      <span class="outcomes-label">Outcomes</span>
+      <span class="outcome-tag">Faster ramp</span>
+      <span class="outcome-tag">Higher close rates</span>
+      <span class="outcome-tag">Consistent execution</span>
+      <span class="outcome-tag">Scalable excellence</span>
+    </div>
+  </div>
 
-  <!-- ══ PILLAR 1 ══ -->
-  <section class="pillar pillar-1" id="pillar-1">
-    <div class="pillar-inner">
-      <div class="pillar-top">
-        <div class="pillar-number">01</div>
-        <div class="pillar-header">
-          <div class="pillar-tag">
-            <span class="pillar-tag-dot"></span>
-            <span class="pillar-tag-text">Pillar One — Reduce Friction</span>
-          </div>
-          <h2 class="pillar-headline">Build a Clean<br>Revenue Engine.</h2>
-          <p class="pillar-body">
-            Friction is <strong>anything that slows, confuses, misallocates, or distracts</strong> revenue teams. It lives in the CRM, in territory assignments, in compensation structures, in the handoff between marketing and sales. Eliminating it creates speed, clarity, and accountability. This pillar addresses both operational clarity and structural fairness — because a system that isn't fair isn't clean.
-          </p>
-        </div>
-      </div>
-
-      <div class="examples-grid">
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">CRM architecture and pipeline clarity</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Strong, fair books of business</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Lead enrichment and routing logic</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Territory design and assignment rules</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Automated workflows and reporting</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Clean marketing-to-sales handoffs</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Compensation clarity and incentive alignment</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Tool consolidation and process documentation</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Accurate forecasting infrastructure</span></div>
-      </div>
-
-      <div class="outcomes-bar">
-        <span class="outcomes-label">Outcomes</span>
-        <span class="outcome-pill">More time selling</span>
-        <span class="outcome-pill">Clear accountability</span>
-        <span class="outcome-pill">Fair opportunity distribution</span>
-        <span class="outcome-pill">Reliable forecasting</span>
-        <span class="outcome-pill">Faster deal velocity</span>
+  <!-- ── PILLAR 3 ── -->
+  <div class="pillar pillar-3">
+    <div class="pillar-header-bar">
+      <span class="pillar-num">03</span>
+      <span class="pillar-name">Value Delivery</span>
+      <span class="pillar-tagline">Activate Leverage</span>
+    </div>
+    <div class="pillar-body">
+      <p class="pillar-desc">
+        Skill alone doesn't close deals. <strong>Leverage does.</strong> This pillar surfaces the highest-impact insights, proof, and strategic assets that move deals forward — evidence, positioning, and intelligence that gives buyers confidence and gives sellers an edge. The goal is insight-led selling, not feature-led pitching.
+      </p>
+      <div class="examples-col">
+        <div class="examples-label">Includes</div>
+        <ul class="examples-list">
+          <li>Case studies aligned to buyer objections</li>
+          <li>ROI calculators</li>
+          <li>Data-backed performance insights</li>
+          <li>Market intelligence and industry trends</li>
+          <li>Vertical-specific positioning</li>
+          <li>Pricing justification frameworks</li>
+          <li>Competitive intelligence</li>
+          <li>Executive-level insight narratives</li>
+          <li>Sales-ready reporting and analytics</li>
+        </ul>
       </div>
     </div>
-  </section>
-
-  <!-- ══ PILLAR 2 ══ -->
-  <section class="pillar pillar-2" id="pillar-2">
-    <div class="pillar-inner">
-      <div class="pillar-top">
-        <div class="pillar-number">02</div>
-        <div class="pillar-header">
-          <div class="pillar-tag">
-            <span class="pillar-tag-dot"></span>
-            <span class="pillar-tag-text">Pillar Two — Increase Effectiveness</span>
-          </div>
-          <h2 class="pillar-headline">Multiply Rep<br>Performance.</h2>
-          <p class="pillar-body">
-            Removing friction creates space. <strong>Effectiveness drives growth.</strong> This pillar is about building the skills, frameworks, and feedback systems that make reps consistently better — faster onboarding, sharper discovery, stronger objection handling, and coaching that scales. Excellence isn't an accident. It's infrastructure.
-          </p>
-        </div>
-      </div>
-
-      <div class="examples-grid">
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Structured onboarding and ramp plans</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Discovery and qualification frameworks</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Objection handling systems</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Competitive positioning and battlecards</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Coaching cadences and scorecards</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Call review and performance analytics</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Messaging refinement and talk track testing</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Data-driven performance feedback loops</span></div>
-      </div>
-
-      <div class="outcomes-bar">
-        <span class="outcomes-label">Outcomes</span>
-        <span class="outcome-pill">Faster ramp</span>
-        <span class="outcome-pill">Higher close rates</span>
-        <span class="outcome-pill">Consistent execution</span>
-        <span class="outcome-pill">Scalable excellence</span>
-      </div>
+    <div class="pillar-outcomes">
+      <span class="outcomes-label">Outcomes</span>
+      <span class="outcome-tag">Insight-led selling</span>
+      <span class="outcome-tag">Differentiated positioning</span>
+      <span class="outcome-tag">Stronger buyer confidence</span>
+      <span class="outcome-tag">Higher win rates</span>
+      <span class="outcome-tag">Revenue predictability</span>
     </div>
-  </section>
+  </div>
 
-  <!-- ══ PILLAR 3 ══ -->
-  <section class="pillar pillar-3" id="pillar-3">
-    <div class="pillar-inner">
-      <div class="pillar-top">
-        <div class="pillar-number">03</div>
-        <div class="pillar-header">
-          <div class="pillar-tag">
-            <span class="pillar-tag-dot"></span>
-            <span class="pillar-tag-text">Pillar Three — Value Delivery</span>
-          </div>
-          <h2 class="pillar-headline">Activate<br>Leverage.</h2>
-          <p class="pillar-body">
-            Skill alone doesn't close deals. <strong>Leverage does.</strong> This pillar focuses on identifying and surfacing the highest-impact insights, proof, and strategic assets that move deals forward — the evidence, positioning, and intelligence that gives buyers confidence and gives sellers an edge that no competitor can easily replicate.
-          </p>
-        </div>
-      </div>
-
-      <div class="examples-grid">
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Case studies aligned to buyer objections</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">ROI calculators</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Data-backed performance insights</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Market intelligence and industry trends</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Vertical-specific positioning</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Pricing justification frameworks</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Competitive intelligence</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Executive-level insight narratives</span></div>
-        <div class="example-item"><span class="example-bullet"></span><span class="example-text">Sales-ready reporting and analytics</span></div>
-      </div>
-
-      <div class="outcomes-bar">
-        <span class="outcomes-label">Outcomes</span>
-        <span class="outcome-pill">Insight-led selling</span>
-        <span class="outcome-pill">Differentiated positioning</span>
-        <span class="outcome-pill">Stronger buyer confidence</span>
-        <span class="outcome-pill">Higher win rates</span>
-        <span class="outcome-pill">Revenue predictability</span>
-      </div>
+  <!-- ── EQUATION ── -->
+  <div class="equation">
+    <div class="eq-label">The Unifying Equation</div>
+    <div class="eq-formula">
+      <span class="eq-term eq-time">Time</span>
+      <span class="eq-op">+</span>
+      <span class="eq-term eq-skill">Skill</span>
+      <span class="eq-op">+</span>
+      <span class="eq-term eq-lever">Leverage</span>
+      <span class="eq-op">=</span>
+      <span class="eq-term eq-result">Revenue</span>
     </div>
-  </section>
-
-  <!-- ══ EQUATION ══ -->
-  <section class="equation-section">
-    <div class="equation-inner">
-      <div class="equation-eyebrow">The Unifying Equation</div>
-
-      <div class="equation-display">
-        <div class="eq-term eq-time">
-          Time
-          <span class="eq-sub">Revenue Operations</span>
-        </div>
-        <div class="eq-op">+</div>
-        <div class="eq-term eq-skill">
-          Skill
-          <span class="eq-sub">Enablement</span>
-        </div>
-        <div class="eq-op">+</div>
-        <div class="eq-term eq-lever">
-          Leverage
-          <span class="eq-sub">Value Delivery</span>
-        </div>
-        <div class="eq-op">=</div>
-        <div class="eq-term eq-result">
-          Revenue
-          <span class="eq-sub">The outcome</span>
-        </div>
-      </div>
-
-      <div class="equation-close">
-        <p><strong>Revenue Operations builds the system.</strong> It removes what slows teams down, creates structural fairness, and ensures every rep has a real shot at performing at their best.</p>
-        <p><strong>Enablement sharpens the sellers.</strong> It builds the skills, frameworks, and feedback loops that turn good reps into great ones — and ensures that excellence is repeatable, not random.</p>
-        <p>Together, they create a revenue engine that is <strong>efficient, fair, and built to scale.</strong></p>
-      </div>
+    <div class="eq-close">
+      <p><strong>Revenue Operations builds the system.</strong> It removes what slows teams down, creates structural fairness, and ensures every rep has a real shot at performing at their best.</p>
+      <p><strong>Enablement sharpens the sellers.</strong> It builds the skills, frameworks, and feedback loops that turn good reps into great ones — and ensures that excellence is repeatable, not random.</p>
+      <p>Together, they create a revenue engine that is <strong>efficient, fair, and built to scale.</strong></p>
     </div>
-  </section>
+  </div>
 
-  <!-- FOOTER -->
   <footer class="page-footer">
-    <div class="footer-brand">Rankings.io</div>
-    <div class="footer-note">Revenue Operations & Enablement · Internal</div>
+    <div class="footer-org">Rankings.io</div>
+    <div class="footer-meta">Revenue Operations & Enablement · Internal</div>
   </footer>
 
 </div>
