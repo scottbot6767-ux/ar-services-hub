@@ -419,6 +419,23 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 /* ==============================================
+   EXPANDABLE PANEL
+   ============================================== */
+.card-panel .offering-tile.collapsed-tile { display: none; }
+.card-panel.expanded .offering-tile.collapsed-tile { display: flex; }
+.expand-toggle {
+  display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+  width: 100%; padding: 0.55rem 0; margin-top: 0.15rem;
+  background: none; border: 1px dashed rgba(20,54,77,0.15); border-radius: 3px;
+  font-family: var(--font-head); font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--blue); cursor: pointer; transition: background 0.15s, color 0.15s;
+}
+.expand-toggle:hover { background: rgba(58,147,207,0.06); }
+.expand-toggle svg { width: 12px; height: 12px; transition: transform 0.2s; }
+.card-panel.expanded .expand-toggle svg { transform: rotate(180deg); }
+
+/* ==============================================
    RESPONSIVE
    ============================================== */
 @media (max-width: 600px) {
@@ -820,61 +837,65 @@ button { cursor: pointer; font-family: inherit; }
               <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Welcome Party Sponsor — $50,000</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('pimcon-lunch')">
+            <button class="offering-tile collapsed-tile" onclick="openOffering('pimcon-lunch')">
               <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Lunch Sponsor — $25,000</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('pimcon-premium-exhibitor')">
+            <button class="offering-tile collapsed-tile" onclick="openOffering('pimcon-premium-exhibitor')">
               <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Premium Exhibitor — $25,000</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('pimcon-vip-tables')">
+            <button class="offering-tile collapsed-tile" onclick="openOffering('pimcon-vip-tables')">
               <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">VIP Tables Sponsor — $20,000</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('pimcon-recharge-station')">
+            <button class="offering-tile collapsed-tile" onclick="openOffering('pimcon-recharge-station')">
               <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Work/Recharge Station — $20,000</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('pimcon-morning-wellness')">
+            <button class="offering-tile collapsed-tile" onclick="openOffering('pimcon-morning-wellness')">
               <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Morning Wellness Sponsor — $17,500</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('pimcon-event-app')">
+            <button class="offering-tile collapsed-tile" onclick="openOffering('pimcon-event-app')">
               <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Event App Sponsor — $15,000</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('pimcon-spa')">
+            <button class="offering-tile collapsed-tile" onclick="openOffering('pimcon-spa')">
               <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Spa Sponsor — $15,000</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('pimcon-standard-exhibitor')">
+            <button class="offering-tile collapsed-tile" onclick="openOffering('pimcon-standard-exhibitor')">
               <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Standard Exhibitor — $15,000</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('pimcon-commercial')">
+            <button class="offering-tile collapsed-tile" onclick="openOffering('pimcon-commercial')">
               <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Commercial Sponsorship — $10,000</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('pimcon-room-key')">
+            <button class="offering-tile collapsed-tile" onclick="openOffering('pimcon-room-key')">
               <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Room Key Sponsor — $10,000</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('pimcon-badge')">
+            <button class="offering-tile collapsed-tile" onclick="openOffering('pimcon-badge')">
               <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Badge Sponsor — $7,500</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('pimcon-lanyard')">
+            <button class="offering-tile collapsed-tile" onclick="openOffering('pimcon-lanyard')">
               <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Lanyard Sponsor — $7,500</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('pimcon-snack-break')">
+            <button class="offering-tile collapsed-tile" onclick="openOffering('pimcon-snack-break')">
               <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Snack/Break Sponsor — $7,500</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
-            <button class="offering-tile" onclick="openOffering('pimcon-wifi')">
+            <button class="offering-tile collapsed-tile" onclick="openOffering('pimcon-wifi')">
               <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Wi-Fi Sponsor — $7,500</span></div>
               <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="expand-toggle" onclick="toggleExpand(this)">
+              <span class="expand-label">Show 14 more</span>
+              <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
         
@@ -1600,6 +1621,14 @@ document.getElementById('pw-input').addEventListener('keydown', e => { if (e.key
 /* ==============================================
    HUB TABS
    ============================================== */
+function toggleExpand(btn) {
+  const panel = btn.closest('.card-panel');
+  const isExpanded = panel.classList.toggle('expanded');
+  const label = btn.querySelector('.expand-label');
+  const hiddenCount = panel.querySelectorAll('.collapsed-tile').length;
+  label.textContent = isExpanded ? 'Show less' : 'Show ' + hiddenCount + ' more';
+}
+
 function switchTab(btn, panelId) {
   const tabBar = btn.closest('.card-tabs');
   tabBar.querySelectorAll('.card-tab').forEach(t => t.classList.remove('active'));
