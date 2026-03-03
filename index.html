@@ -800,7 +800,82 @@ button { cursor: pointer; font-family: inherit; }
         <button class="add-drive-btn" title="Refresh from Drive" onclick="refreshCard('pimcon', this)"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8a5 5 0 1 1-1-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><polyline points="12,2 12,5.5 8.5,5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
         <div class="card-body">
           <div class="card-panel active" id="pimcon-services">
-            <div class="coming-soon"><div class="coming-soon-dot"></div><p>Services coming soon</p></div>
+            <button class="offering-tile" onclick="openOffering('pimcon-title-sponsor')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Title Sponsor — $250,000</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-closing-party')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Closing Party Sponsor — $50,000</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-comedy-show')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Comedy Show Sponsor — $50,000</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-vip-dinner')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">VIP Dinner Sponsor — $50,000</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-welcome-party')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Welcome Party Sponsor — $50,000</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-lunch')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Lunch Sponsor — $25,000</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-premium-exhibitor')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Premium Exhibitor — $25,000</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-vip-tables')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">VIP Tables Sponsor — $20,000</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-recharge-station')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Work/Recharge Station — $20,000</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-morning-wellness')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Morning Wellness Sponsor — $17,500</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-event-app')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Event App Sponsor — $15,000</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-spa')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Spa Sponsor — $15,000</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-standard-exhibitor')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Standard Exhibitor — $15,000</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-commercial')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Commercial Sponsorship — $10,000</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-room-key')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Room Key Sponsor — $10,000</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-badge')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Badge Sponsor — $7,500</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-lanyard')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Lanyard Sponsor — $7,500</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-snack-break')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Snack/Break Sponsor — $7,500</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+            <button class="offering-tile" onclick="openOffering('pimcon-wifi')">
+              <div class="tile-info"><span class="tile-category">Sponsorship</span><span class="tile-name">Wi-Fi Sponsor — $7,500</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
           </div>
         
         <div class="add-doc-bar hidden" id="pimcon-add-bar"><input class="add-doc-input" id="pimcon-add-input" type="text" placeholder="Paste Google Doc URL to add offering…" onkeydown="if(event.key==='Enter')addDocFromBar('pimcon')" /><button class="add-doc-go" id="pimcon-add-go" onclick="addDocFromBar('pimcon')">Add</button></div>
@@ -936,6 +1011,11 @@ const LOGOS = {
     src: 'https://cdn-ilapehp.nitrocdn.com/JzcuNEOunVkUEngShcLekRVajrmSTreT/assets/images/optimized/rev-5a5341b/gladiatorlawmarketing.com/wp-content/uploads/2024/06/gladiator-law-marketing_logo.png',
     alt: 'Gladiator Law Marketing',
     preserve: false
+  },
+  pimcon: {
+    src: 'https://www.pimcon.org/wp-content/uploads/2025/11/logo-2026.png',
+    alt: 'PIMCon',
+    preserve: true
   }
 };
 
@@ -1320,6 +1400,172 @@ const offerings = {
       'Schema expansion',
       'Technical debt cleanup',
     ])
+  },
+
+  // ── PIMCON SPONSORSHIPS ─────────────────────────────────────
+  'pimcon-title-sponsor': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Title Sponsor — $250,000',
+    docId: '15o8xEOhmYI9BnYpENj3BrEIn2opiIrCX17XZLJ02o5k',
+    html: `<div class="sprint-hero"><span class="sprint-price">$250,000</span><span class="sprint-timeline">1 available</span></div>
+      <div class="sow-section"><div class="sow-section-title">Inclusions</div>
+      <div class="sow-section-title" style="margin-top:1.25rem;margin-bottom:0.6rem">Premium Signage and Logo placement</div>
+      <ul class="service-list">
+        <li>${check} Main stage screens and walk-in loops</li>
+        <li>${check} DJ Booth</li>
+        <li>${check} Event Website &amp; Registration</li>
+        <li>${check} On-Site Signage and Printed Agenda Cover</li>
+      </ul></div>
+      <div class="sow-section"><ul class="service-list">
+        <li>${check} Branded Activation Alley</li>
+        <li>${check} Premium Booth in [Title Sponsor] Alley as a dedicated experience zone</li>
+        <li>${check} Largest, most prominent booth within the branded alley</li>
+        <li>${check} 4x In-Event Commercials</li>
+        <li>${check} Limited Category Exclusions</li>
+        <li>${check} Standard Conference Passes (# to be set later)</li>
+      </ul></div>`
+  },
+  'pimcon-closing-party': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Closing Party Sponsor — $50,000',
+    docId: '1iCVYDk9MxsYNxzCsBGjB7ZkHTjEQRze52Hr6BuX7yfQ',
+    html: `<div class="sprint-hero"><span class="sprint-price">$50,000</span><span class="sprint-timeline">1 available</span></div>
+      <div class="sow-section"><ul class="service-list">
+        <li>${check} 1x 10'x10' Standard Booth in the expo</li>
+        <li>${check} 1x In-Event Commercial</li>
+      </ul></div>
+      <div class="sow-section"><div class="sow-section-title">Experience Benefits</div><ul class="service-list">
+        <li>${check} "[Experience] sponsored by [brand]" naming</li>
+        <li>${check} Logo on experience-specific signage and slides</li>
+        <li>${check} Verbal recognition from the main stage</li>
+      </ul></div>
+      <div class="sow-section"><ul class="service-list"><li>${check} 5x Standard conference passes</li></ul></div>`
+  },
+  'pimcon-comedy-show': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Comedy Show Sponsor — $50,000',
+    docId: '1N64iFsSOq4IPeutFMIa0HdQ6x3rQRjRmyjeGpI2q2a4',
+    html: `<div class="sprint-hero"><span class="sprint-price">$50,000</span><span class="sprint-timeline">1 available</span></div>
+      <div class="sow-section"><ul class="service-list">
+        <li>${check} 1x 10'x10' Standard Booth in the expo</li>
+        <li>${check} 1x In-Event Commercial</li>
+      </ul></div>
+      <div class="sow-section"><div class="sow-section-title">Experience Benefits</div><ul class="service-list">
+        <li>${check} "[Experience] sponsored by [brand]" naming</li>
+        <li>${check} Logo on experience-specific signage and slides</li>
+        <li>${check} Verbal recognition from the main stage</li>
+      </ul></div>
+      <div class="sow-section"><ul class="service-list"><li>${check} 5x Standard conference passes</li></ul></div>`
+  },
+  'pimcon-vip-dinner': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'VIP Dinner Sponsor — $50,000',
+    docId: '1Iip5VWTwaev3lVplFMTQHUxgOLWEsPKD4BVtCrEFEM0',
+    html: `<div class="sprint-hero"><span class="sprint-price">$50,000</span><span class="sprint-timeline">1 available</span></div>
+      <div class="sow-section"><ul class="service-list">
+        <li>${check} 1x 10'x10' Standard Booth in the expo</li>
+        <li>${check} 1x In-Event Commercial</li>
+      </ul></div>
+      <div class="sow-section"><div class="sow-section-title">Experience Benefits</div><ul class="service-list">
+        <li>${check} "[Experience] sponsored by [brand]" naming</li>
+        <li>${check} Logo on experience-specific signage and slides</li>
+        <li>${check} Verbal recognition from the main stage</li>
+      </ul></div>
+      <div class="sow-section"><ul class="service-list"><li>${check} 5x Standard conference passes</li></ul></div>`
+  },
+  'pimcon-welcome-party': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Welcome Party Sponsor — $50,000',
+    docId: '1czohwv3p4huXoNKsKUtQswc_6C_dRvyvct6DSRcLk-4',
+    html: `<div class="sprint-hero"><span class="sprint-price">$50,000</span><span class="sprint-timeline">1 available</span></div>
+      <div class="sow-section"><ul class="service-list">
+        <li>${check} 1x 10'x10' Standard Booth in the expo</li>
+        <li>${check} 1x In-Event Commercial</li>
+      </ul></div>
+      <div class="sow-section"><div class="sow-section-title">Experience Benefits</div><ul class="service-list">
+        <li>${check} "[Experience] sponsored by [brand]" naming</li>
+        <li>${check} Logo on experience-specific signage and slides</li>
+        <li>${check} Verbal recognition from the main stage</li>
+      </ul></div>
+      <div class="sow-section"><ul class="service-list"><li>${check} 5x Standard conference passes</li></ul></div>`
+  },
+  'pimcon-lunch': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Lunch Sponsor — $25,000',
+    docId: '1zhsan9z_JbEfN7Rhd_tS90vVJfgBqeE9KStecMcV8r0',
+    html: `<div class="sprint-hero"><span class="sprint-price">$25,000</span><span class="sprint-timeline">1 available</span></div>`
+  },
+  'pimcon-premium-exhibitor': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Premium Exhibitor — $25,000',
+    docId: '1I9dIwklCkY7wxubl3snX84UGXYIgSLt-ML3iT-bYpTE',
+    html: `<div class="sprint-hero"><span class="sprint-price">$25,000</span><span class="sprint-timeline">8 available</span></div>
+      <div class="sow-section"><ul class="service-list">
+        <li>${check} 1x 10'x10' Standard booth in the expo</li>
+        <li>${check} 3x Conference Passes</li>
+        <li>${check} 1x Activation in "Title Sponsor Alley"</li>
+      </ul></div>`
+  },
+  'pimcon-vip-tables': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'VIP Tables Sponsor — $20,000',
+    docId: '1quT1QNBhJZEXImBKZDq_0wEfv8SOPy58wlzL9BohjwE',
+    html: `<div class="sprint-hero"><span class="sprint-price">$20,000</span></div>`
+  },
+  'pimcon-recharge-station': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Work/Recharge Station Sponsor — $20,000',
+    docId: '194IZxa1Yd923B13CkxBpW8i8YFMotOGMnsJW9Gc9AzM',
+    html: `<div class="sprint-hero"><span class="sprint-price">$20,000</span></div>`
+  },
+  'pimcon-morning-wellness': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Morning Wellness Sponsor — $17,500',
+    docId: '1gAMUk3MYYgSy51lvfMZ3VKYPNLbYepnMnQnyNH76-PE',
+    html: `<div class="sprint-hero"><span class="sprint-price">$17,500</span></div>`
+  },
+  'pimcon-event-app': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Event App Sponsor — $15,000',
+    docId: '1k4ZbpC8XeQ7HxIH8eu2qz5U-X6s5skzICQeyzNyLkzA',
+    html: `<div class="sprint-hero"><span class="sprint-price">$15,000</span></div>`
+  },
+  'pimcon-spa': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Spa Sponsor — $15,000',
+    docId: '1vymFo3N2ZvGpIBYbRu0kkpMmMQRGrd2Lfi5hx9WCK8E',
+    html: `<div class="sprint-hero"><span class="sprint-price">$15,000</span></div>`
+  },
+  'pimcon-standard-exhibitor': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Standard Exhibitor — $15,000',
+    docId: '1JtYPV_dJTBDJfNj2VBiJLFEuzLwkl-r6E5BBJoRURqs',
+    html: `<div class="sprint-hero"><span class="sprint-price">$15,000</span><span class="sprint-timeline">14 available</span></div>
+      <div class="sow-section"><ul class="service-list">
+        <li>${check} 1x 10'x10' Standard Booth in the expo</li>
+        <li>${check} 2x Conference passes</li>
+      </ul></div>`
+  },
+  'pimcon-commercial': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Commercial Sponsorship — $10,000',
+    docId: '16YfCW9Fmxfiy6p603CiUuUqmNn-QBciFm7M9x3oYLP4',
+    html: `<div class="sprint-hero"><span class="sprint-price">$10,000</span></div>
+      <div class="sow-section"><ul class="service-list">
+        <li>${check} 30-60 second commercial featured in the main ballroom</li>
+        <li>${check} Logo placement on the PIMCON website</li>
+      </ul></div>`
+  },
+  'pimcon-room-key': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Room Key Sponsor — $10,000',
+    docId: '1knp1tOzvqU1dkV8WBq0iFQ_X0jnDAwMwzl0rmvoOeNY',
+    html: `<div class="sprint-hero"><span class="sprint-price">$10,000</span></div>`
+  },
+  'pimcon-badge': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Badge Sponsor — $7,500',
+    docId: '196JPB11IqhlTO_AtOfodeXHyuiEHodrbldGtwM0CDE4',
+    html: `<div class="sprint-hero"><span class="sprint-price">$7,500</span></div>`
+  },
+  'pimcon-lanyard': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Lanyard Sponsor — $7,500',
+    docId: '17fUsegHs_AT2Mc-peLixAGo5mzsADgAeMKMfs7D7j2E',
+    html: `<div class="sprint-hero"><span class="sprint-price">$7,500</span></div>`
+  },
+  'pimcon-snack-break': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Snack/Break Sponsor — $7,500',
+    docId: '1I852NzlLyLzYGWTacVfuCRhphgnQLY5kcD_ZwiSxI2k',
+    html: `<div class="sprint-hero"><span class="sprint-price">$7,500</span><span class="sprint-timeline">2 available</span></div>`
+  },
+  'pimcon-wifi': {
+    entity: 'PIMCon', entityKey: 'pimcon', category: 'Sponsorship', title: 'Wi-Fi Sponsor — $7,500',
+    docId: '1xLT16oBXMi5smqCQ4u7477BZlW2T6RpewoNx8aiyUsw',
+    html: `<div class="sprint-hero"><span class="sprint-price">$7,500</span></div>`
   },
 
 };
