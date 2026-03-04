@@ -2050,16 +2050,26 @@ function closeOffering() {
 
 async function loadDocOfferings() {
   const docOfferings = Object.entries(offerings).filter(([k, v]) => v.docId && v.html && v.html.includes('Loading from Google Docs'));
-  await Promise.all(docOfferings.map(async ([key, o]) => {
+  for (let i = 0; i < docOfferings.length; i++) {
+    const [key, o] = docOfferings[i];
     try {
       const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://docs.google.com/document/d/' + o.docId + '/export?format=txt');
       const resp = await fetch(proxyUrl);
       if (!resp.ok) throw new Error('HTTP ' + resp.status);
       offerings[key].html = renderDocText(await resp.text());
     } catch(e) {
-      offerings[key].html = '<p style="color:#f87171;padding:1rem;">Could not load document. Make sure it\'s shared as "Anyone with the link."</p>';
+      // Retry once after a short delay
+      try {
+        await new Promise(r => setTimeout(r, 1000));
+        const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://docs.google.com/document/d/' + o.docId + '/export?format=txt');
+        const resp = await fetch(proxyUrl);
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        offerings[key].html = renderDocText(await resp.text());
+      } catch(e2) {
+        offerings[key].html = '<p style="color:#f87171;padding:1rem;">Could not load document. Make sure it\'s shared as "Anyone with the link."</p>';
+      }
     }
-  }));
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => { loadCustomTiles(); loadDocOfferings(); });
