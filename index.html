@@ -918,7 +918,18 @@ button { cursor: pointer; font-family: inherit; }
         <button class="add-drive-btn" title="Refresh from Drive" onclick="refreshCard('pimmedia', this)"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8a5 5 0 1 1-1-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><polyline points="12,2 12,5.5 8.5,5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
         <div class="card-body">
           <div class="card-panel active" id="pimmedia-services">
-            <div class="coming-soon"><div class="coming-soon-dot"></div><p>Services coming soon</p></div>
+            <button class="offering-tile" onclick="openOffering('pimmedia-entry-4k')">
+              <div class="tile-info"><span class="tile-category">Package</span>
+              <span class="tile-name">4K/Mo — Entry</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+            <button class="offering-tile" onclick="openOffering('pimmedia-growth-6k')">
+              <div class="tile-info"><span class="tile-category">Package</span>
+              <span class="tile-name">6K/Mo — Growth</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+            <button class="offering-tile" onclick="openOffering('pimmedia-dominance-12k')">
+              <div class="tile-info"><span class="tile-category">Package</span>
+              <span class="tile-name">12K/Mo — Dominance</span></div>
+              <span class="tile-arrow"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
           </div>
         
         <div class="add-doc-bar hidden" id="pimmedia-add-bar"><input class="add-doc-input" id="pimmedia-add-input" type="text" placeholder="Paste Google Doc URL to add offering…" onkeydown="if(event.key==='Enter')addDocFromBar('pimmedia')" /><button class="add-doc-go" id="pimmedia-add-go" onclick="addDocFromBar('pimmedia')">Add</button></div>
@@ -1589,6 +1600,23 @@ const offerings = {
     html: `<div class="sprint-hero"><span class="sprint-price">$7,500</span></div>`
   },
 
+  // ── PIM MEDIA PACKAGES ──────────────────────────────────────
+  'pimmedia-entry-4k': {
+    entity: 'PIM Media', entityKey: 'pimmedia', category: 'Package', title: '4K/Mo — Entry',
+    docId: '1xygn9vA2MHVzmeT7OHpNIIzshcDW-gf1IjC8ypYTzpI',
+    html: '<p class="loading-doc">Loading from Google Docs…</p>'
+  },
+  'pimmedia-growth-6k': {
+    entity: 'PIM Media', entityKey: 'pimmedia', category: 'Package', title: '6K/Mo — Growth',
+    docId: '11P1rOX0xi_Wrr26qtCm3Cj-438j9xiVxd6MCgmciW3k',
+    html: '<p class="loading-doc">Loading from Google Docs…</p>'
+  },
+  'pimmedia-dominance-12k': {
+    entity: 'PIM Media', entityKey: 'pimmedia', category: 'Package', title: '12K/Mo — Dominance',
+    docId: '1qstuDgMXnCXjG3vkmvlMqhqF53aqYhUUXygqfbLpb7Y',
+    html: '<p class="loading-doc">Loading from Google Docs…</p>'
+  },
+
 };
 
 /* ==============================================
@@ -2020,7 +2048,21 @@ function closeOffering() {
   window.scrollTo(0, 0);
 }
 
-document.addEventListener('DOMContentLoaded', () => { loadCustomTiles(); });
+async function loadDocOfferings() {
+  const docOfferings = Object.entries(offerings).filter(([k, v]) => v.docId && v.html && v.html.includes('Loading from Google Docs'));
+  await Promise.all(docOfferings.map(async ([key, o]) => {
+    try {
+      const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://docs.google.com/document/d/' + o.docId + '/export?format=txt');
+      const resp = await fetch(proxyUrl);
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      offerings[key].html = renderDocText(await resp.text());
+    } catch(e) {
+      offerings[key].html = '<p style="color:#f87171;padding:1rem;">Could not load document. Make sure it\'s shared as "Anyone with the link."</p>';
+    }
+  }));
+}
+
+document.addEventListener('DOMContentLoaded', () => { loadCustomTiles(); loadDocOfferings(); });
 </script>
 
 
